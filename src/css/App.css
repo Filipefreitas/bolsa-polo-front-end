@@ -1,0 +1,387 @@
+*
+{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+a, a:visited {
+    text-decoration: none;
+  }
+
+body
+{
+    font-family: 'Raleway', Arial, sans-serif;
+    line-height: 1.4rem;
+    font-size: 1.1rem;
+}
+
+
+h1,h2,h3
+{
+    margin-bottom: 16px;
+}
+
+p
+{
+    margin-bottom: 10px;
+}
+
+.vertical-center {
+    margin: 0;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+.container
+{
+    width:90%;
+    max-width: 800px;
+    margin: 0px auto;
+    padding:32px 0px;
+}
+
+.btn
+{
+    display:inline-block;
+    padding:8px;
+    width:110px;
+}
+
+.btn-primary
+{   
+    color:white;
+    background-color: black;
+}
+
+
+.icon-cursor 
+{   
+    cursor: pointer;
+
+}
+
+.icon-size-xlg
+{
+    font-size: x-large;
+}
+
+.icon-size-dbl-xlg
+{
+    font-size: xx-large;
+}
+
+
+.grid
+{
+    display: grid;
+}
+.grid-x-right
+{
+    justify-self: right;
+}
+
+.grid-x-center
+{
+    justify-self: center;
+}
+
+.grid-x-left
+{
+    justify-self: start;
+}
+
+.grid-y-top
+{
+    align-self: top;
+}
+
+.grid-y-center
+{
+    align-self: center;
+}
+
+.grid-y-bottom
+{
+    align-self: end;
+}
+
+.grid-col-2
+{
+    grid-template-columns: repeat(2,1fr);
+}
+
+.grid-col-3
+{
+    grid-template-columns: repeat(3,1fr);
+}
+.grid-col-4
+{
+    grid-template-columns: repeat(4,1fr);
+}
+
+.grid-col-1-200px
+{
+    grid-template-columns:  1fr 200px;
+}
+
+.grid-col-100px-auto
+{
+    grid-template-columns: 120px auto;
+    column-gap: 5px;
+}
+
+.hide
+{
+    display:none;
+}
+
+.error
+{
+    display:block;
+    color:red;
+    font-size:cal(1rem -2px);
+}
+
+/************HEADER**********/
+header h1 
+{
+    font-size: 1.6rem;
+}
+
+/*************** MODAL***************/
+
+.modal
+{
+    position:absolute;
+    top:0;
+    left:0;
+    height:100vh;
+    width:100%;
+    z-index:1;
+    background-color: rgba(158, 158, 158,0.7);
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+
+}
+
+.modal-container
+{
+    width:400px;
+    margin: 0 auto;
+    background-color: white;
+    padding:50px 32px;
+    text-align: center;
+}
+
+/************************Search Box*******************/
+
+.search-box-container
+{
+    margin-top: 20px;
+}
+
+.search-box-container  label
+{
+    margin-top:7px;
+    font-weight:bold;
+}
+/************************moive LIST*******************/
+.movie-list-container
+{
+    margin-top: 16px;
+}
+
+.movie-container
+{
+    background-color:#aaa;
+    margin-bottom: 10px;
+    padding:16px;
+}
+
+.movie-top-area > p
+{
+    font-weight: 900;
+    font-size:calc(1rem + 5px);
+
+}
+
+.movie-description
+{
+    font-size:calc(1rem - 2px);
+}
+
+.margin-10
+{
+    margin-left: 10px;
+}
+
+/********************ADD FORM***********************/
+
+.form-control-container
+{
+    margin-top: 20px;
+}
+
+.form-control-container label , .form-control-container input 
+{
+    display:block;
+}
+
+.form-control-container label 
+{
+    font-weight: bold;
+}
+
+.form-control 
+{
+    margin-top: 10px;
+    width:90%;
+    border: 1px solid black;
+    padding:5px;
+}
+
+.form-control-max 
+{
+    margin-top: 10px;
+    width:100%;
+    border: 1px solid black;
+    padding:5px;
+}
+
+input[type=text].form-control
+{
+    height:30px;
+}
+
+textarea.form-control
+{
+    height:150px;
+}
+
+
+/********************FOOTER***********************/
+footer
+{
+    font-size: 1.5rem;
+}
+
+footer > p
+{
+    text-align: center;
+}
+
+/********************COLLAPSIBLE***********************/
+.collapsible {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+  
+.collapsible-header {
+    background-color: #f1f1f1;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+.collapsible-body {
+    padding: 10px;
+  }
+
+/********************SIDEBAR***********************/
+/* Position and sizing of burger button */
+/* Position and sizing of burger button */
+.bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    left: 36px;
+    top: 36px;
+  }
+  
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+    background: #373a47;
+}
+  
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+    background: #c94e50;
+}
+  
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+    height: 24px;
+    width: 24px;
+}
+  
+/* Color/shape of close button cross */
+.bm-cross {
+    background: #bdc3c7;
+}
+  
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+    position: fixed;
+    height: 100%;
+}
+  
+/* General sidebar styles */
+.bm-menu {
+    background: #373a47;
+    padding: 1em 1em 0;
+    font-size: 1.15em;
+}
+  
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+    fill: #373a47;
+}
+  
+/* Wrapper for item list */
+.bm-item-list {
+    padding: 0.3em;
+    font-size: 18px;
+    display: block;
+}
+
+/* Individual item */
+.bm-item {
+    display: block;
+    color: #b8b7ad;
+    margin-top: 10px;
+    align-items: center
+}
+
+.fa{
+    display: inline-block;
+    font-size: 25px;
+    margin-right: 5px;
+    text-align: center;
+}
+
+.bm-item:hover, .bm-item-list a span:hover {
+    color: #c94e50;
+}
+ 
+.bm-overlay {
+    background: rgba(0, 0, 0, 0.3);
+}
+  
+.bm-item-list a span {
+    margin-left: 10px;
+    font-weight: 700;
+    color: #b8b7ad;
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+  }
