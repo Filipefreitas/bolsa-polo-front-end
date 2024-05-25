@@ -1,7 +1,10 @@
 import {useState} from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => 
 {
+    const navigate = useNavigate();
+    
     const [formData, setFormData] = useState({
         userName: "",
         password: "",
@@ -30,10 +33,10 @@ const LoginForm = () =>
         });
 
         if(success){
-            alert("exists")
+            navigate('/main');
         }
         else{
-            alert("denied")
+            alert("login failed")
         }
     };            
 

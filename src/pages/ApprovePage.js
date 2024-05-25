@@ -1,8 +1,8 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import {useEffect,useState} from "react";
 import {useParams} from "react-router-dom"
-import StudentVoucherList from "../components/StudentVoucherList";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Sidebar from "../components/Sidebar";
 
 const ApprovePage = (props) => {
     
@@ -73,6 +73,7 @@ const ApprovePage = (props) => {
 
     return (
         <div>
+            <Sidebar/>
             <Header/>
             <main>
                 <div className="grid grid-col-2">

@@ -1,11 +1,13 @@
 import Header from "../components/Header.js";
 import Footer from "../components/Footer";
+import Sidebar from "../components/Sidebar.js";
 import RegistrationForm  from "../components/RegistrationForm";
 
 const RegistrationPage = (props) => 
 {  
     return (
         <div> 
+            <Sidebar/>
             <Header/>
             <main>
                <RegistrationForm

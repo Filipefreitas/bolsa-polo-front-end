@@ -2,8 +2,9 @@ import {useEffect,useState} from "react";
 import {useParams} from "react-router-dom"
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import StudentVoucherList  from "../components/StudentVoucherList";
+import Sidebar from "../components/Sidebar";
 import Modal from "../components/Modal";
+import StudentVoucherList  from "../components/StudentVoucherList";
 
 const VoucherPage = (props) => {
     
@@ -94,6 +95,7 @@ const VoucherPage = (props) => {
     
     return (
         <div>
+            <Sidebar/>
             <Header/>
             <Modal modal={props.modal} onHide={props.hideModal}/>
             <main>

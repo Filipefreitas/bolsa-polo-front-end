@@ -3,12 +3,27 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SearchBox from "../components/SearchBox"
 import Collapsible from '../components/Collapsible';
+import Sidebar from '../components/Sidebar';
 
 const HomePage = (props) => 
 {           
-    const [pendingVouchers, setPendingVouchers] = useState([])
-    const [availableVouchers, setAvailableVouchers] = useState([])
-
+    const[allVouchers, setAllVouchers] = useState([]);
+    const[vouchers, setVouchers] = useState([]);
+    const[pendingVouchers, setPendingVouchers] = useState([])
+    const[availableVouchers, setAvailableVouchers] = useState([])
+  
+    useEffect(()=>{ 
+        fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/vouchers`)
+        .then(response=>response.json())
+        .then(json=>{
+          setAllVouchers(json.data)
+          setVouchers(json.data)
+        })
+        .catch(err=>{
+                console.log(`Error ${err}`)
+          })
+        }, []);
+    
     useEffect(()=>{ 
         fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/vouchers?status=waiting`)
         .then(response=>response.json())
@@ -31,9 +46,35 @@ const HomePage = (props) =>
         })
     }, []);
 
+    const filterVouchers = (input)=> { 
+        let filteredVouchers = allVouchers.filter((voucher)=>{
+          return voucher.percDiscount.toString().includes(input)
+        });
+        
+        if(input === "")
+        {
+          setVouchers(allVouchers);
+        }
+        setVouchers(filteredVouchers);
+      }
+      
+      const deleteVoucher = (id)=>{
+        fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/vouchers/${id}`, {
+          method: 'DELETE'
+        })
+        .then(props.setModal({
+              msg: "Voucher deletado com sucesso"
+              , visible: true
+          }))
+        .catch(err=>{
+          console.log(`Error ${err}`)
+         });
+    }
 
     return (
         <div>
+            <Sidebar/>
+
             <Header/>
                 <main>
                     <section>
@@ -41,28 +82,28 @@ const HomePage = (props) =>
                         <h3 className="section-title">Buscar voucher por percentual</h3>
 
                         <SearchBox 
-                            vouchers={props.vouchers} setVouchers={props.setVouchers} 
-                            allVouchers={props.allVouchers} setAllVouchers={props.setAllVouchers}
-                            onFilterVouchers={props.onFilterVouchers}
+                            vouchers={vouchers} setVouchers={setVouchers} 
+                            allVouchers={allVouchers} setAllVouchers={setAllVouchers}
+                            onFilterVouchers={filterVouchers}
                         />
                         </section>                                
 
                         <Collapsible
-                            vouchers={props.vouchers} setVouchers={props.setVouchers} 
-                            onDeleteVoucher={props.onDeleteVoucher} 
                             title="Lista de todos os vouchers cadastrados"
+                            vouchers={vouchers} setVouchers={setVouchers} 
+                            onDeleteVoucher={deleteVoucher} 
                         />
 
                         <Collapsible
-                            vouchers={availableVouchers} setVouchers={setAvailableVouchers} 
-                            onDeleteVoucher={props.onDeleteVoucher} 
                             title="Lista de todos os vouchers disponíveis"
+                            vouchers={availableVouchers} setVouchers={setAvailableVouchers} 
+                            onDeleteVoucher={deleteVoucher} 
                         />
 
                         <Collapsible
-                            vouchers={pendingVouchers} setVouchers={setPendingVouchers} 
-                            onDeleteVoucher={props.onDeleteVoucher} 
                             title="Lista de todos os vouchers aguardando deferimento"
+                            vouchers={pendingVouchers} setVouchers={setPendingVouchers}     
+                            onDeleteVoucher={deleteVoucher} 
                         />
 
                 </main>
