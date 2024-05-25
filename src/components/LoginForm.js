@@ -1,45 +1,30 @@
 import {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const LoginForm = () => 
 {
     const navigate = useNavigate();
-    
+    const { login } = useAuth();
+
     const [formData, setFormData] = useState({
         userName: "",
         password: "",
         errorMsg: ""
     });
 
-    const [success, setSucess] = useState(null);
-
-    const onLogin = (evt) => {
+    const onLogin = async(evt) => {
 
         evt.preventDefault();
-
-        fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/users/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json' 
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            setSucess(data.success);
-        })
-        .catch(error => {
-          console.error('There was an error checking the username:', error);
-        });
-
-        if(success){
-            navigate('/main');
-        }
-        else{
-            alert("login failed")
+        
+        const isAuthenticated = await login(formData);
+        if (isAuthenticated) {
+          navigate('/main');
+        } 
+        else {
+            alert('Login failed');
         }
     };            
-
     
     return (
         <section id="register-section title">
