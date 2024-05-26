@@ -83,13 +83,13 @@ const RegistrationForm = (props) =>
 
             <div className= "form-container horizontal-center">
             
-                <h3>Register</h3>
+                <h3>Cadastrar usuário</h3>
                 <span htmlFor="sucessMessage" className="sucess-message">{formData.success}</span>
 
                 <form action="" onSubmit={onCreateAccount}>
 
                     <div className="form-control">
-                        <label htmlFor="firstName" className="text-left-alligned">First Name</label>
+                        <label htmlFor="firstName" className="text-left-alligned">Primeiro nome</label>
                         <input type="text" id="firstName" value={formData.firstName} onChange={(evt)=>{
                             setFormData({...formData, firstName : evt.target.value});
                         }}/>
@@ -97,7 +97,7 @@ const RegistrationForm = (props) =>
                     </div>
 
                     <div className="form-control">
-                        <label htmlFor="lastName" className="text-left-alligned">Last Name</label>
+                        <label htmlFor="lastName" className="text-left-alligned">Último nome</label>
                         <input type="text" id="lastName" value={formData.lastName} onChange={(evt)=>{
                             setFormData({...formData, lastName : evt.target.value});
                         }}/>
@@ -105,7 +105,7 @@ const RegistrationForm = (props) =>
                     </div>
 
                     <div className="form-control">
-                        <label htmlFor="userName" className="text-left-alligned">User Name</label>
+                        <label htmlFor="userName" className="text-left-alligned">Nome usuário</label>
                         <input type="text" id="userName"  value={formData.userName} onChange={(evt)=>{
                             setFormData({...formData, userName : evt.target.value});
                         }}/>
@@ -134,7 +134,7 @@ const RegistrationForm = (props) =>
                     </div>
 
                     <div className="form-control">
-                        <label htmlFor="password" className="text-left-alligned">Password</label>
+                        <label htmlFor="password" className="text-left-alligned">Senha</label>
                         <input type="password" id="password" value={formData.password} onChange={(evt)=>{
                             setFormData({...formData, password : evt.target.value});
                         }}/>

@@ -4,15 +4,15 @@ const UserList = (props) => {
   
     return (
         <main>
-            <table id="round-map" className='month-map-tables'>
+            <table id="round-map" className='table-container'>
                 <thead>
                     <tr>
-                        <th>Usuário</th>
-                        <th>Primeiro nome</th>
-                        <th>Último nome</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Data criação</th>
+                        <th><h1>Usuário</h1></th>
+                        <th><h1>Primeiro nome</h1></th>
+                        <th><h1>Último nome</h1></th>
+                        <th><h1>Email</h1></th>
+                        <th><h1>Role</h1></th>
+                        <th><h1>Data criação</h1></th>
                     </tr>
                 </thead>
 

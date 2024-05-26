@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Link} from "react-router-dom"
+import { NavLink } from "react-router-dom";
 import { slide as Menu } from 'react-burger-menu';
 import { MdHome } from "react-icons/md";
 import { FaTicketAlt } from "react-icons/fa";
@@ -13,56 +13,53 @@ const Sidebar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const handleDropdownClick = () => {
         setIsDropdownOpen(!isDropdownOpen);
-      };
+    };
 
     return (
-        <Menu>
-            <main>
-                <div className="bm-menu">
-                    <nav className="bm-item-list">
-                        <a className="bm-item">
-                            <Link to = "/main">
-                                <MdHome id="home" className="bm-item fa"/>
-                                <span>Inicio</span>
-                            </Link>
-                        </a>
+        <Menu aria-label="Main Navigation">
+            <nav className="bm-menu">
+                <ul className="bm-item-list" style={{ listStyle: 'none', padding: 0 }}>
+                    <li>
+                        <NavLink to="/main" className="bm-item" role="menuitem" aria-label="Home">
+                            <MdHome aria-hidden="true" className='fa'/>
+                            <span>Inicio</span>
+                        </NavLink>
+                    </li>
 
-                        <a className="bm-item">
-                            <Link to = "/new-vouchers">
-                                <FaTicketAlt id="new-vouchers" className="bm-item fa"/>
-                                <span className='text'>Cadastrar</span>
-                            </Link>
-                        </a>
-        
-                        <div className="bm-item">
-                            <div onClick={handleDropdownClick}>
-                                <FaRegUserCircle id="registration" className="bm-item fa"/>
-                                <span>Usuários {isDropdownOpen ? '▲' : '▼'}</span>
-                            </div >
+                    <li>
+                        <NavLink to="/new-vouchers" className="bm-item" role="menuitem" aria-label="Register Vouchers">
+                            <FaTicketAlt aria-hidden="true" className='fa'/>
+                            <span>Cadastrar</span>
+                        </NavLink>
+                    </li>
 
-                            {isDropdownOpen && (
-                                <div>
-                                    <a className="bm-item left-10">
-                                        <Link to = "/registration">
-                                            <IoMdPersonAdd id="new-vouchers" className="bm-item fa"/>
-                                            <span className='text'>Cadastrar</span>
-                                        </Link>
-                                    </a>
-                                    
-                                    <a className="bm-item left-10">
-                                        <Link to = "/users">
-                                            <MdToggleOn id="user-list" className="bm-item fa"/>
-                                            <span className='text'>Ver usuários</span>
-                                        </Link>
-                                    </a>
-                                </div>
-                            )}
-                        </div>
-                    </nav>
-                </div>
-            </main>
+                    <li>
+                        <a onClick={handleDropdownClick} aria-haspopup="true" aria-expanded={isDropdownOpen} className="bm-item">
+                            <FaRegUserCircle aria-hidden="true" className='fa'/>
+                            <span>Usuários {isDropdownOpen ? '▲' : '▼'}</span>
+                        </a>
+                        
+                        {isDropdownOpen && (
+                            <ul style={{ listStyle: 'none', padding: '0 0 0 20px' }}>
+                                <li>
+                                    <NavLink to="/registration" className="bm-item" role="menuitem" aria-label="Register User">
+                                        <IoMdPersonAdd aria-hidden="true" className='fa'/>
+                                        <span>Cadastrar</span>
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/users" className="bm-item" role="menuitem" aria-label="View Users">
+                                        <MdToggleOn aria-hidden="true" className='fa'/>
+                                        <span>Ver usuários</span>
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        )}
+                    </li>
+                </ul>
+            </nav>
         </Menu>
     );
-  };    
+};
 
 export default Sidebar;

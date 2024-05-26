@@ -106,7 +106,7 @@ const VoucherPage = (props) => {
                             <p>Id do voucher: {voucher._id}</p>
                             <p>Percentual de desconto: {voucher.percDiscount}%</p>
                             <p>Status do voucher: {voucher.status}</p>
-                            <p>Criado em: {voucher.createdAt}</p>
+                            <p>Criado em: {(new Date(voucher.createdAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' })}</p>
                         </div>
                         <div>
                             <section className={"search-box-container"}>

@@ -12,7 +12,7 @@ const VoucherList = (props) => {
               onDeleteVoucher={props.onDeleteVoucher} 
               percDiscount={voucher.percDiscount} 
               status={voucher.status} 
-              createdAt={voucher.createdAt}/>
+              createdAt={(new Date(props.createdAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' })}/>
             ))}
         </section>
     </div>    

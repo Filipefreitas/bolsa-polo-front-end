@@ -27,40 +27,39 @@ const LoginForm = () =>
     };            
     
     return (
-        <section id="register-section title">
+        <div className="login-wrap">
+        	<div className="login-html">
+                <form action="" onSubmit={onLogin}>
+                    <input id="tab-1" type="radio" name="tab" className="sign-in" checked/>
+                    <label for="tab-1" className="tab">Login</label>
 
-        <div className= "form-container horizontal-center">
-        
-            <h3>Login</h3>
-            <span htmlFor="sucessMessage" className="sucess-message">{formData.success}</span>
+                    <div className="login-form">
+                        <div className= "sign-in-htm">
+                            <div className="group">
+                                <label htmlFor="userName" className="label">User Name</label>
+                                <input type="text" id="userName" className="input" value={formData.userName} onChange={(evt)=>{
+                                    setFormData({...formData, userName : evt.target.value});
+                                }}/>
+                            </div>
 
-            <form action="" onSubmit={onLogin}>
+                            <div className="group">
+                                <label htmlFor="password" className="label">Password</label>
+                                <input type="password" id="password" className="input" value={formData.password} onChange={(evt)=>{
+                                    setFormData({...formData, password : evt.target.value});
+                                }}/>
+                            </div>
 
-                <div className="form-control">
-                    <label htmlFor="userName" className="text-left-alligned">User Name</label>
-                    <input type="text" id="userName"  value={formData.userName} onChange={(evt)=>{
-                        setFormData({...formData, userName : evt.target.value});
-                    }}/>
-                </div>
+                            <span htmlFor="errorMessage" className="text-left-alligned">{formData.errorMsg}</span>
 
-                <div className="form-control">
-                    <label htmlFor="password" className="text-left-alligned">Password</label>
-                    <input type="password" id="password" value={formData.password} onChange={(evt)=>{
-                        setFormData({...formData, password : evt.target.value});
-                    }}/>
-                </div>
-
-                <span htmlFor="errorMessage" className="text-left-alligned">{formData.errorMsg}</span>
-
-                <div className="form-control">
-                    <button className="btn btn-submit" type="submit">Login</button>
-                </div>
-
-            </form>
-
+                            <div className="group">
+                                <button type="submit" className="button" >Login</button>
+                            </div>
+                            <div class="hr"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-
-    </section>
     )
 }
 

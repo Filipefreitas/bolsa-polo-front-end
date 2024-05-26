@@ -45,7 +45,7 @@ const VoucherItemCard = (props) => {
 
         <p className="movie-description">Id: {props.id}</p>
         <p className="movie-description">Status: {props.status}</p>
-        <p className="movie-description">Criado em: {props.createdAt}</p>
+        <p className="movie-description">Criado em: {(new Date(props.createdAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' })}</p>
     </div> 
   )
 }
