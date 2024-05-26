@@ -80,48 +80,44 @@ const RegistrationForm = (props) =>
     return (
         <section id="register-section title">
             <Modal modal={props.modal} onHide={props.hideModal}/>
-
-            <div className= "form-container horizontal-center">
             
+            <form action="" onSubmit={onCreateAccount}> 
                 <h3>Cadastrar usuário</h3>
-                <span htmlFor="sucessMessage" className="sucess-message">{formData.success}</span>
-
-                <form action="" onSubmit={onCreateAccount}>
-
-                    <div className="form-control">
-                        <label htmlFor="firstName" className="text-left-alligned">Primeiro nome</label>
+                <div class="register-container">
+                    <div>
+                        <label htmlFor="firstName">Primeiro nome</label>
                         <input type="text" id="firstName" value={formData.firstName} onChange={(evt)=>{
                             setFormData({...formData, firstName : evt.target.value});
                         }}/>
-                        <span htmlFor="errorMessage" className="text-left-alligned">{formData.firstNameErr}</span>
+                        <p htmlFor="errorMessage" className='errorMessage'>{formData.firstNameErr}</p>
                     </div>
 
-                    <div className="form-control">
-                        <label htmlFor="lastName" className="text-left-alligned">Último nome</label>
+                    <div>
+                        <label htmlFor="lastName">Último nome</label>
                         <input type="text" id="lastName" value={formData.lastName} onChange={(evt)=>{
                             setFormData({...formData, lastName : evt.target.value});
                         }}/>
-                        <span htmlFor="errorMessage" className="text-left-alligned">{formData.lastNameErr}</span>
+                        <p htmlFor="errorMessage" className='errorMessage'>{formData.lastNameErr}</p>
                     </div>
 
-                    <div className="form-control">
-                        <label htmlFor="userName" className="text-left-alligned">Nome usuário</label>
+                    <div>
+                        <label htmlFor="userName">Nome usuário</label>
                         <input type="text" id="userName"  value={formData.userName} onChange={(evt)=>{
                             setFormData({...formData, userName : evt.target.value});
                         }}/>
-                        <span htmlFor="errorMessage" className="text-left-alligned">{formData.userNameErr}</span>
+                        <p htmlFor="errorMessage" className='errorMessage'>{formData.userNameErr}</p>
                     </div>
 
-                    <div className="form-control">
-                        <label htmlFor="email" className="text-left-alligned">Email</label>
+                    <div>
+                        <label htmlFor="email">Email</label>
                         <input type="text" id="email"  value={formData.email} onChange={(evt)=>{
                             setFormData({...formData, email : evt.target.value});
                         }}/>
-                        <span htmlFor="errorMessage" className="text-left-alligned">{formData.emailErr}</span>
+                        <p htmlFor="errorMessage" className='errorMessage'>{formData.emailErr}</p>
                     </div>
 
-                    <div className="form-control">
-                        <label htmlFor="role" className="text-left-alligned">Role</label>
+                    <div>
+                        <label htmlFor="role">Role</label>
                         <select type="text" id="role" value={formData.role} onChange={(evt)=>{
                             setFormData({...formData, role : evt.target.value});
                         }}>
@@ -130,24 +126,22 @@ const RegistrationForm = (props) =>
                             <option value="approver">Aprovador</option>
                             <option value="business partner">Parceiro</option>
                         </select>
-                        <span htmlFor="errorMessage" className="text-left-alligned">{formData.roleErr}</span>
+                        <p htmlFor="errorMessage" className='errorMessage'>{formData.roleErr}</p>
                     </div>
 
-                    <div className="form-control">
-                        <label htmlFor="password" className="text-left-alligned">Senha</label>
+                    <div>
+                        <label htmlFor="password">Senha</label>
                         <input type="password" id="password" value={formData.password} onChange={(evt)=>{
                             setFormData({...formData, password : evt.target.value});
                         }}/>
-                        <span htmlFor="errorMessage" className="text-left-alligned">{formData.passwordErr}</span>
+                        <p htmlFor="errorMessage" className='errorMessage'>{formData.passwordErr}</p>
                     </div>
 
-                    <div className="form-control">
-                        <button className="btn btn-submit" type="submit">Criar usuário</button>
+                    <div>
+                        <button className="registerbtn" type="submit">Criar usuário</button>
                     </div>
-
-                </form>
-
-              </div>
+                </div>
+            </form>
 
          </section>
     )
