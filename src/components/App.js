@@ -35,7 +35,9 @@ const App = () => {
                 <Routes>
                   <Route exact path="/" element={<LoginForm/>}></Route>                
 
-                  <Route exact path="/main" element={<HomePage/>}></Route>
+                  <Route exact path="/main" element={<HomePage
+                    modal={modal} setModal={setModal} hideModal={hideModal}
+                  />}></Route>
 
                   <Route exact path= "/vouchers/:id" element={<VoucherPage
                     modal={modal} setModal={setModal} hideModal={hideModal}

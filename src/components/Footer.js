@@ -2,10 +2,8 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <footer>
-            <p>
-                Bolsa Polo
-            </p>
+        <footer id="footer">
+            <p>Bolsa Polo</p>
         </footer>
     )
 }

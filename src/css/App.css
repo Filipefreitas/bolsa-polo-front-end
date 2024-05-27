@@ -6,7 +6,7 @@
 
 a, a:visited {
     text-decoration: none;
-  }
+}
 
 body{
     font-family: 'Raleway', Arial, sans-serif;
@@ -496,13 +496,18 @@ textarea.form-control{
 .toggle-btn.toggled .thumb{
     left: calc(50px - 25px)
 }
-/********************FOOTER***********************/
-footer{
-    font-size: 1.5rem;
-}
 
-footer > p{
-    text-align: center;
+/********************FOOTER***********************/
+#footer{
+    width: 100vw;
+    background-color: #373a47;
+    color: white;         
+    text-align: center;    
+    padding: 1rem 0;       
+    position: fixed;       
+    bottom: 0;
+    left: 0;             
+    z-index: 1000;             
 }
 
 /********************COLLAPSIBLE***********************/
@@ -561,7 +566,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
     height: 100%;
     top: 0;
     left: 0;
-    width: 350px; /* Adjust the width as needed */
+    width: 350px; 
+    z-index: 2; 
 }
 
 /* General sidebar styles */

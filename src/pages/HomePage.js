@@ -1,7 +1,8 @@
 import { React, useState, useEffect } from 'react'
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import SearchBox from "../components/SearchBox"
+import SearchBox from "../components/SearchBox";
+import Modal from '../components/Modal';
 import Collapsible from '../components/Collapsible';
 import Sidebar from '../components/Sidebar';
 
@@ -74,6 +75,7 @@ const HomePage = (props) =>
     return (
         <div>
             <Sidebar/>
+            <Modal modal={props.modal} onHide={props.hideModal}/>
 
             <Header/>
                 <main>
