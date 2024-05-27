@@ -1,4 +1,5 @@
 import React from 'react'
+import ToggleButton from './ToggleButton'
 
 const UserList = (props) => {
   
@@ -11,8 +12,9 @@ const UserList = (props) => {
                         <th><h1>Primeiro nome</h1></th>
                         <th><h1>Último nome</h1></th>
                         <th><h1>Email</h1></th>
-                        <th><h1>Role</h1></th>
+                        <th><h1>Perfil</h1></th>
                         <th><h1>Data criação</h1></th>
+                        <th><h1>Status</h1></th>
                     </tr>
                 </thead>
 
@@ -25,6 +27,7 @@ const UserList = (props) => {
                             <td key={user._id}>{user.email}</td>
                             <td key={user._id}>{user.role}</td>
                             <td>{(new Date(user.dateCreated)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' })}</td>
+                            <td key={user._id}><ToggleButton id={user._id} isActive={user.isActive}/></td>
                         </tr>
                     ))}
                 </tbody>   
