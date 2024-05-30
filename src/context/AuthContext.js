@@ -2,8 +2,9 @@ import React, { createContext, useState, useContext } from 'react';
 
 const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [userRole, setUserRole] = useState(null); 
 
   const login = async (form) => {
     try {
@@ -12,15 +13,17 @@ const AuthProvider = ({ children }) => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username: form.userName, password: form.password }) // Ensure correct keys
+        body: JSON.stringify({ username: form.userName, password: form.password })
       });
 
       const data = await response.json();
 
       if (data.success) {
-        setUser({ username: form.userName }); // Use form.userName
+        setUser(data.userName);
+        setUserRole(data.userRole);
         return true;
-      } else {
+      } 
+      else {
         console.error('Login failed:', data.message);
         return false;
       }
@@ -30,13 +33,22 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const logout = () => {
+    setUser(null);
+    setUserRole(null);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login }}>
+    <AuthContext.Provider value={{ user, userRole, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-const useAuth = () => useContext(AuthContext);
-
-export { AuthProvider, AuthContext as default, useAuth };
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+      throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};

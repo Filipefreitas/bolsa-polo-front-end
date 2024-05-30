@@ -4,7 +4,7 @@ import { FaWindowClose } from "react-icons/fa";
 import { FaLink } from "react-icons/fa";
 import { RiPassValidLine } from "react-icons/ri";
 
-const VoucherItemCard = (props) => {
+  const VoucherItemCard = (props) => {
 
     const clickHandleDel = ()=> props.onDeleteVoucher(props.id);
 
@@ -15,7 +15,7 @@ const VoucherItemCard = (props) => {
             <div className='grid-x-right'>
               <span>
                 <span>
-                {props.status === 'available'? (
+                {props.status === 'available' && (props.userRole === 'admin' || props.userRole === 'business partner') ? (
                     <Link to = {`/vouchers/${props.id}`}>    
                       <FaLink className="icon-cursor icon-size-xlg margin-10"/>
                     </Link>
@@ -24,16 +24,16 @@ const VoucherItemCard = (props) => {
                 </span>
                 
                 <span>
-                  {props.status === 'waiting'? (
-                        <Link to = {`/approve/${props.id}`}>    
+                    {props.status === 'waiting' && props.userRole === 'approver' ? (
+                      <Link to = {`/approve/${props.id}`}>    
                           <RiPassValidLine className="icon-cursor icon-size-xlg margin-10"/>
                         </Link> 
                     ): (<span></span>)
-                  }
+                }
                 </span> 
                                 
                 <span>
-                  {props.status === 'available'? (
+                  {props.status === 'available'  && props.userRole === 'admin' ? (
                     <FaWindowClose onClick={clickHandleDel} className="icon-cursor icon-size-xlg margin-10"/>
                   ): (<span></span>)
                 }

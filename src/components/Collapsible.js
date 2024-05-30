@@ -21,7 +21,9 @@ const Collapsible = (props) => {
               onDeleteVoucher={props.onDeleteVoucher} 
               percDiscount={voucher.percDiscount} 
               status={voucher.status} 
-              createdAt={voucher.createdAt}/>
+              createdAt={voucher.createdAt}
+              userRole={props.userRole}
+              />
             ))}
         </section>
         </div>}

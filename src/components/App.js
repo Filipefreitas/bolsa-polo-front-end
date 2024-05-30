@@ -1,17 +1,17 @@
-import { React, useState } from 'react'
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import { AuthProvider } from '../context/AuthContext';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider  } from '../context/AuthContext';
 
 import '../css/App.css';
 import HomePage from "../pages/HomePage";
 import LoginForm from './LoginForm';
 import Modal from './Modal';
-import VoucherPage from "../pages/VoucherPage"
-import ApprovePage from "../pages/ApprovePage"
+import VoucherPage from "../pages/VoucherPage";
+import ApprovePage from "../pages/ApprovePage";
 import RegistrationPage  from "../pages/RegistrationPage";
 import NewVouchersPage from '../pages/NewVouchersPage';
 import LoginPage from "../pages/LoginPage";
-import UserListPage from "../pages/UserListPage"
+import UserListPage from "../pages/UserListPage";
 
 const App = () => {
   const[modal, setModal] = useState({
@@ -25,6 +25,7 @@ const App = () => {
         , visible: false
     })
 };
+
   return (
     <AuthProvider>
         <Router>
@@ -53,7 +54,7 @@ const App = () => {
 
                   <Route exact path="/login" element={<LoginPage/>}className="menu-item"></Route>
 
-                  <Route  exact path="/new-vouchers" element={<NewVouchersPage
+                  <Route  exact path="/new-vouchers" element={<NewVouchersPage 
                     modal={modal} setModal={setModal} hideModal={hideModal}
                   />}className="menu-item"></Route >
 
