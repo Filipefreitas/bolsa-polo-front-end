@@ -396,105 +396,89 @@ textarea.form-control{
     color: #ff3852;
     font-size: 12px;
 }
+
 /********************USER LIST TABLE***********************/
-/* https://devdevout.com/css/css-tables */
+.table-container {
+    font-family: 'Open Sans', sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    line-height: 20px;
+    text-align: left;
+    overflow: hidden;
+    margin: 0 auto;
+    display: table;
+    font-size: 11px;
+    font-weight: 300;
+}
+
 .table-container th h1 {
     font-weight: bold;
     font-size: 1em;
     text-align: left;
-    color:#D5DDE5;
-}
-
-.table-container td {
-    -webkit-box-shadow: 0 2px 2px -2px #0E1119;
-    -moz-box-shadow: 0 2px 2px -2px #0E1119;
-    box-shadow: 0 2px 2px -2px #0E1119;
-}
-
-.table-container {
-    font-family: 'Open Sans', sans-serif;
-    text-align: left;
-    overflow: hidden;
-    width: 80%;
-    margin: 0 auto;
-    display: table;
-    font-size: 12px;
-    font-weight: 300;
-    line-height: 1.42em;
-    color:#A7A1AE;
-    background-color:#1F2739;
+    color: #D5DDE5;
 }
 
 .table-container td, .table-container th {
-    padding-bottom: 2%;
-    padding-top: 2%;
-    padding-left:2%;  
+    border: 1px solid #ddd;
+    padding-left: 6px;
+    vertical-align: middle; 
 }
-
-.table-container tr:nth-child(odd) {
-    background: #ebebeb;
-}
-
-.table-container tr:nth-child(even) {
-    background: #F8F8F8;
-}
-
+  
 .table-container th {
     background-color: #1F2739;
 }
 
-.table-container td:first-child { 
-    color: #FB667A; 
-}
+.table-container tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}    
 
 .table-container tr:hover {
-    background-color: #464A52;
-    -webkit-box-shadow: 0 6px 6px -6px #0E1119;
-    -moz-box-shadow: 0 6px 6px -6px #0E1119;
-    box-shadow: 0 6px 6px -6px #0E1119;
+    background-color: #ddd;
 }
- 
-.table-container td:hover {
-   color: #403E10;
-   font-weight: bold;
+
+.table-container button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /********************TOGGLE***********************/
-.toggle-btn{
+.toggle-btn {
     background-color: #b7b9ba;
-    border: 1px solid;
+    border: none;
     border-radius: 99px;
-    width: 50px;
-    height: 28px;
+    width: 32px;
+    height: 14px;
     transition: background-color 0.1s ease, border-color 0.2s ease;
     cursor: pointer;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.748);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.529);
     position: relative;
+    top:50%;
 }
 
-.toggle-btn .thumb{
-    height: 20px;
-    width: 20px;
+.toggle-btn .thumb {
+    height: 13px;
+    width: 13px;
     background-color: #fff;
     border-radius: 99px;
     transform: translateX(0);
     transition: left 0.15s ease;
     position: absolute;
-    left: 3px;
+    left: 1px;
     top: 50%;
     transform: translateY(-50%);
 }
 
-.toggle-btn.toggled{
+.toggle-btn.toggled {
     background-color: #15b58e;
 }
 
-.toggle-btn:hover{
+.toggle-btn:hover {
     border-color: #6f6f6f;
 }
 
-.toggle-btn.toggled .thumb{
-    left: calc(50px - 25px)
+.toggle-btn.toggled .thumb {
+    left: calc(33px - 18px)
 }
 
 /********************FOOTER***********************/

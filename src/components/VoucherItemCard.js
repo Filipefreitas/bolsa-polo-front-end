@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthContext'
 
   const VoucherItemCard = (props) => {
 
-  const { userPermissions } = useAuth(); 
+  const { permissions } = useAuth(); 
   const clickHandleDel = ()=> props.onDeleteVoucher(props.id);
 
     return (
@@ -17,7 +17,7 @@ import { useAuth } from '../context/AuthContext'
             <div className='grid-x-right'>
               <span>
                 <span>
-                {props.status === 'available' && userPermissions.includes('link')? (
+                {props.status === 'available' && permissions.includes('link')? (
                     <Link to = {`/vouchers/${props.id}` }>    
                       <FaLink className="icon-cursor icon-size-xlg margin-10"/>
                     </Link>
@@ -26,16 +26,16 @@ import { useAuth } from '../context/AuthContext'
                 </span>
                 
                 <span>
-                  {props.status === 'waiting' && userPermissions.includes('approve') ? (
-                    <Link to = {`/approve/${props.id}`}>    
-                        <RiPassValidLine className="icon-cursor icon-size-xlg margin-10"/>
-                      </Link> 
-                  ): null
-                }
+                    {props.status === 'waiting' && permissions.includes('approve') ? (
+                      <Link to = {`/approve/${props.id}`}>    
+                          <RiPassValidLine className="icon-cursor icon-size-xlg margin-10"/>
+                        </Link> 
+                    ): null
+                  }
                 </span> 
                                 
                 <span>
-                  {props.status === 'available' && userPermissions.includes('delete') ? (
+                  {props.status === 'available' && permissions.includes('delete') ? (
                     <FaWindowClose onClick={clickHandleDel} className="icon-cursor icon-size-xlg margin-10"/>
                   ): null
                 }

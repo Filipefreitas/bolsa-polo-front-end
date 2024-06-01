@@ -5,7 +5,6 @@ import SearchBox from "../components/SearchBox";
 import Modal from '../components/Modal';
 import Collapsible from '../components/Collapsible';
 import Sidebar from '../components/Sidebar';
-import { useAuth } from '../context/AuthContext';
 
 const HomePage = (props) => 
 {           
@@ -13,7 +12,6 @@ const HomePage = (props) =>
     const[vouchers, setVouchers] = useState([]);
     const[pendingVouchers, setPendingVouchers] = useState([])
     const[availableVouchers, setAvailableVouchers] = useState([])
-    const { userRole } = useAuth();
 
     useEffect(()=>{ 
         fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/vouchers`)
@@ -97,21 +95,18 @@ const HomePage = (props) =>
                             title="Lista de todos os vouchers cadastrados"
                             vouchers={vouchers} setVouchers={setVouchers} 
                             onDeleteVoucher={deleteVoucher} 
-                            userRole={userRole}
                         />
 
                         <Collapsible
                             title="Lista de todos os vouchers disponíveis"
                             vouchers={availableVouchers} setVouchers={setAvailableVouchers} 
                             onDeleteVoucher={deleteVoucher} 
-                            userRole={userRole}
                         />
 
                         <Collapsible
                             title="Lista de todos os vouchers aguardando deferimento"
                             vouchers={pendingVouchers} setVouchers={setPendingVouchers}     
                             onDeleteVoucher={deleteVoucher} 
-                            userRole={userRole}
                         />
 
                 </main>

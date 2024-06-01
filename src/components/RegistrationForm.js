@@ -117,7 +117,7 @@ const RegistrationForm = (props) =>
                     </div>
 
                     <div>
-                        <label htmlFor="role">Role</label>
+                        <label htmlFor="role">Perfil</label>
                         <select type="text" id="role" value={formData.role} onChange={(evt)=>{
                             setFormData({...formData, role : evt.target.value});
                         }}>

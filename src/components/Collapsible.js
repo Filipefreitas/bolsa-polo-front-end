@@ -15,16 +15,15 @@ const Collapsible = (props) => {
       </div>
       {isOpen && <div className="collapsible-body">
       <section className="movie-list-container">
-            {props.vouchers.map((voucher)=>(<VoucherItemCard 
-              key={voucher._id} 
-              id={voucher._id} 
-              onDeleteVoucher={props.onDeleteVoucher} 
-              percDiscount={voucher.percDiscount} 
-              status={voucher.status} 
-              createdAt={voucher.createdAt}
-              userRole={props.userRole}
-              />
-            ))}
+          {props.vouchers.map((voucher)=>(<VoucherItemCard 
+            key={voucher._id} 
+            id={voucher._id} 
+            onDeleteVoucher={props.onDeleteVoucher} 
+            percDiscount={voucher.percDiscount} 
+            status={voucher.status} 
+            createdAt={voucher.createdAt}
+            />
+          ))}
         </section>
         </div>}
     </div>

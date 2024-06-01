@@ -6,10 +6,13 @@ import { FaTicketAlt } from "react-icons/fa";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoMdPersonAdd } from "react-icons/io";
 import { MdToggleOn } from "react-icons/md";
+import { useAuth } from '../context/AuthContext'
 
 import '../css/App.css';
 
 const Sidebar = () => {
+    const { roles } = useAuth(); 
+
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const handleDropdownClick = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -26,36 +29,41 @@ const Sidebar = () => {
                         </NavLink>
                     </li>
 
-                    <li>
-                        <NavLink to="/new-vouchers" className="bm-item" role="menuitem" aria-label="Register Vouchers">
-                            <FaTicketAlt aria-hidden="true" className='fa'/>
-                            <span>Cadastrar</span>
-                        </NavLink>
-                    </li>
+                    {roles === 'admin' ? (
+                        <li>
+                            <NavLink to="/new-vouchers" className="bm-item" role="menuitem" aria-label="Register Vouchers">
+                                <FaTicketAlt aria-hidden="true" className='fa'/>
+                                <span>Cadastrar</span>
+                            </NavLink>
+                        </li>
+                        ): null
+                    }
 
-                    <li>
-                        <a onClick={handleDropdownClick} aria-haspopup="true" aria-expanded={isDropdownOpen} className="bm-item">
-                            <FaRegUserCircle aria-hidden="true" className='fa'/>
-                            <span>Usuários {isDropdownOpen ? '▲' : '▼'}</span>
-                        </a>
-                        
-                        {isDropdownOpen && (
-                            <ul style={{ listStyle: 'none', padding: '0 0 0 20px' }}>
-                                <li>
-                                    <NavLink to="/registration" className="bm-item" role="menuitem" aria-label="Register User">
-                                        <IoMdPersonAdd aria-hidden="true" className='fa'/>
-                                        <span>Cadastrar</span>
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/users" className="bm-item" role="menuitem" aria-label="View Users">
-                                        <MdToggleOn aria-hidden="true" className='fa'/>
-                                        <span>Ver usuários</span>
-                                    </NavLink>
-                                </li>
-                            </ul>
-                        )}
-                    </li>
+                    {roles === 'admin' ? (
+                        <li>
+                            <a onClick={handleDropdownClick} aria-haspopup="true" aria-expanded={isDropdownOpen} className="bm-item">
+                                <FaRegUserCircle aria-hidden="true" className='fa'/>
+                                <span>Usuários {isDropdownOpen ? '▲' : '▼'}</span>
+                            </a>
+                            
+                            {isDropdownOpen && (
+                                <ul style={{ listStyle: 'none', padding: '0 0 0 20px' }}>
+                                    <li>
+                                        <NavLink to="/registration" className="bm-item" role="menuitem" aria-label="Register User">
+                                            <IoMdPersonAdd aria-hidden="true" className='fa'/>
+                                            <span>Cadastrar</span>
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/users" className="bm-item" role="menuitem" aria-label="View Users">
+                                            <MdToggleOn aria-hidden="true" className='fa'/>
+                                            <span>Ver usuários</span>
+                                        </NavLink>
+                                    </li>
+                                </ul>
+                            )}
+                        </li>): null
+                    }    
                 </ul>
             </nav>
         </Menu>

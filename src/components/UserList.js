@@ -5,7 +5,7 @@ const UserList = (props) => {
   
     return (
         <main>
-            <table id="round-map" className='table-container'>
+            <table id="user-table" className='table-container'>
                 <thead>
                     <tr>
                         <th><h1>Usuário</h1></th>
