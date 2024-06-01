@@ -13,21 +13,23 @@ const UserList = (props) => {
                         <th><h1>Último nome</h1></th>
                         <th><h1>Email</h1></th>
                         <th><h1>Perfil</h1></th>
+                        <th><h1>Permissões</h1></th>
                         <th><h1>Data criação</h1></th>
                         <th><h1>Status</h1></th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    {props.users.map((user, index) => (
-                        <tr key={index}>
-                            <td key={user._id}>{user.userName}</td>
-                            <td key={user._id}>{user.firstName}</td>
-                            <td key={user._id}>{user.lastName}</td>
-                            <td key={user._id}>{user.email}</td>
-                            <td key={user._id}>{user.role}</td>
+                    {props.users.map((user) => (
+                        <tr key={user._id}>
+                            <td>{user.userName}</td>
+                            <td>{user.firstName}</td>
+                            <td>{user.lastName}</td>
+                            <td>{user.email}</td>
+                            <td>{user.role.name}</td>
+                            <td>{user.role.permissions.map(permission => permission.name).join(', ')}</td>
                             <td>{(new Date(user.dateCreated)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' })}</td>
-                            <td key={user._id}><ToggleButton id={user._id} isActive={user.isActive}/></td>
+                            <td><ToggleButton id={user._id} isActive={user.isActive}/></td>
                         </tr>
                     ))}
                 </tbody>   

@@ -3,10 +3,12 @@ import {Link} from "react-router-dom"
 import { FaWindowClose } from "react-icons/fa";
 import { FaLink } from "react-icons/fa";
 import { RiPassValidLine } from "react-icons/ri";
+import { useAuth } from '../context/AuthContext'
 
   const VoucherItemCard = (props) => {
 
-    const clickHandleDel = ()=> props.onDeleteVoucher(props.id);
+  const { userPermissions } = useAuth(); 
+  const clickHandleDel = ()=> props.onDeleteVoucher(props.id);
 
     return (
       <div className="movie-container">
@@ -15,27 +17,27 @@ import { RiPassValidLine } from "react-icons/ri";
             <div className='grid-x-right'>
               <span>
                 <span>
-                {props.status === 'available' && (props.userRole === 'admin' || props.userRole === 'business partner') ? (
-                    <Link to = {`/vouchers/${props.id}`}>    
+                {props.status === 'available' && userPermissions.includes('link')? (
+                    <Link to = {`/vouchers/${props.id}` }>    
                       <FaLink className="icon-cursor icon-size-xlg margin-10"/>
                     </Link>
-                    ): (<span></span>)
+                    ): null
                   }    
                 </span>
                 
                 <span>
-                    {props.status === 'waiting' && props.userRole === 'approver' ? (
-                      <Link to = {`/approve/${props.id}`}>    
-                          <RiPassValidLine className="icon-cursor icon-size-xlg margin-10"/>
-                        </Link> 
-                    ): (<span></span>)
+                  {props.status === 'waiting' && userPermissions.includes('approve') ? (
+                    <Link to = {`/approve/${props.id}`}>    
+                        <RiPassValidLine className="icon-cursor icon-size-xlg margin-10"/>
+                      </Link> 
+                  ): null
                 }
                 </span> 
                                 
                 <span>
-                  {props.status === 'available'  && props.userRole === 'admin' ? (
+                  {props.status === 'available' && userPermissions.includes('delete') ? (
                     <FaWindowClose onClick={clickHandleDel} className="icon-cursor icon-size-xlg margin-10"/>
-                  ): (<span></span>)
+                  ): null
                 }
                 </span>
 

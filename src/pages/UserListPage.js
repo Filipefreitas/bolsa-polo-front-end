@@ -6,13 +6,13 @@ import UserList from "../components/UserList.js";
 
 const LoginPage = () => 
 {  
-    const[users, sestUser] = useState([{}])
+    const[users, setUser] = useState([])
   
     useEffect(()=>{ 
         fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/users`)
         .then(response=>response.json())
         .then(json=>{
-            sestUser(json.data)
+            setUser(json.data)
         })
         .catch(err=>{
                 console.log(`Error ${err}`)

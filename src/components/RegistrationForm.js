@@ -124,7 +124,7 @@ const RegistrationForm = (props) =>
                             <option value="" defaultValue>(seleciona uma opção)</option>
                             <option value="admin">Admin</option>
                             <option value="approver">Aprovador</option>
-                            <option value="business partner">Parceiro</option>
+                            <option value="partner">Parceiro</option>
                         </select>
                         <p htmlFor="errorMessage" className='errorMessage'>{formData.roleErr}</p>
                     </div>

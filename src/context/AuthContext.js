@@ -5,6 +5,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [userRole, setUserRole] = useState(null); 
+  const [userPermissions, setUserPermissions] = useState(null); 
 
   const login = async (form) => {
     try {
@@ -21,6 +22,9 @@ export const AuthProvider = ({ children }) => {
       if (data.success) {
         setUser(data.userName);
         setUserRole(data.userRole);
+        
+        const usePermissions = data.userPermissions.map(permission => permission.name).join(', ')
+        setUserPermissions(usePermissions);
         return true;
       } 
       else {
@@ -36,10 +40,11 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     setUserRole(null);
+    setUserPermissions(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, userRole, login, logout }}>
+    <AuthContext.Provider value={{ user, userRole, userPermissions, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
