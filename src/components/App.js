@@ -12,6 +12,7 @@ import RegistrationPage  from "../pages/RegistrationPage";
 import NewVouchersPage from '../pages/NewVouchersPage';
 import LoginPage from "../pages/LoginPage";
 import UserListPage from "../pages/UserListPage";
+import ReportVouchersPage from "../pages/ReportVouchersPage";
 
 const App = () => {
   const[modal, setModal] = useState({
@@ -53,6 +54,10 @@ const App = () => {
                   />}className="menu-item"></Route>
 
                   <Route exact path="/login" element={<LoginPage/>}className="menu-item"></Route>
+
+                  <Route  exact path="/vouchers" element={<ReportVouchersPage 
+                    modal={modal} setModal={setModal} hideModal={hideModal}
+                  />}className="menu-item"></Route >
 
                   <Route  exact path="/new-vouchers" element={<NewVouchersPage 
                     modal={modal} setModal={setModal} hideModal={hideModal}

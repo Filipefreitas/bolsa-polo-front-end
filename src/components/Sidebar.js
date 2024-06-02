@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAuth } from '../context/AuthContext'
 import { NavLink } from "react-router-dom";
 import { slide as Menu } from 'react-burger-menu';
 import { MdHome } from "react-icons/md";
@@ -6,16 +7,22 @@ import { FaTicketAlt } from "react-icons/fa";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoMdPersonAdd } from "react-icons/io";
 import { MdToggleOn } from "react-icons/md";
-import { useAuth } from '../context/AuthContext'
+import { BsSendPlusFill } from "react-icons/bs";
+import { FaTable } from "react-icons/fa";
 
 import '../css/App.css';
 
 const Sidebar = () => {
     const { roles } = useAuth(); 
 
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const handleDropdownClick = () => {
-        setIsDropdownOpen(!isDropdownOpen);
+    const [isVoucherDropdownOpen, setIsVoucherDropdownOpen] = useState(false);
+    const handleVoucherDropdownClick = () => {
+        setIsVoucherDropdownOpen(!isVoucherDropdownOpen);
+    };
+
+    const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+    const handleUserDropdownClick = () => {
+        setIsUserDropdownOpen(!isUserDropdownOpen);
     };
 
     return (
@@ -31,22 +38,38 @@ const Sidebar = () => {
 
                     {roles === 'admin' ? (
                         <li>
-                            <NavLink to="/new-vouchers" className="bm-item" role="menuitem" aria-label="Register Vouchers">
+                            <a onClick={handleVoucherDropdownClick} aria-haspopup="true" aria-expanded={isVoucherDropdownOpen} className="bm-item">
                                 <FaTicketAlt aria-hidden="true" className='fa'/>
-                                <span>Cadastrar</span>
-                            </NavLink>
-                        </li>
-                        ): null
-                    }
+                                <span>Vouchers {isVoucherDropdownOpen ? '▲' : '▼'}</span>
+                            </a>
+                            
+                            {isVoucherDropdownOpen && (
+                                <ul style={{ listStyle: 'none', padding: '0 0 0 20px' }}>
+                                    <li>
+                                        <NavLink to="/new-vouchers" className="bm-item" role="menuitem" aria-label="Register User">
+                                            <BsSendPlusFill  aria-hidden="true" className='fa'/>
+                                            <span>Cadastrar</span>
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/vouchers" className="bm-item" role="menuitem" aria-label="View Users">
+                                            <FaTable aria-hidden="true" className='fa'/>
+                                            <span>Ver vouchers</span>
+                                        </NavLink>
+                                    </li>
+                                </ul>
+                            )}
+                        </li>): null
+                    }    
 
                     {roles === 'admin' ? (
                         <li>
-                            <a onClick={handleDropdownClick} aria-haspopup="true" aria-expanded={isDropdownOpen} className="bm-item">
+                            <a onClick={handleUserDropdownClick} aria-haspopup="true" aria-expanded={isUserDropdownOpen} className="bm-item">
                                 <FaRegUserCircle aria-hidden="true" className='fa'/>
-                                <span>Usuários {isDropdownOpen ? '▲' : '▼'}</span>
+                                <span>Usuários {isUserDropdownOpen ? '▲' : '▼'}</span>
                             </a>
                             
-                            {isDropdownOpen && (
+                            {isUserDropdownOpen && (
                                 <ul style={{ listStyle: 'none', padding: '0 0 0 20px' }}>
                                     <li>
                                         <NavLink to="/registration" className="bm-item" role="menuitem" aria-label="Register User">

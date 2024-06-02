@@ -17,12 +17,12 @@ const LoginForm = () =>
 
         evt.preventDefault();
         
-        const isAuthenticated = await login(formData);
-        if (isAuthenticated) {
+        const response  = await login(formData);
+        if (response.success) {
           navigate('/main');
         } 
         else {
-            alert('Login failed');
+            setFormData({ ...formData, errorMsg: response.message });
         }
     };            
     
@@ -49,7 +49,7 @@ const LoginForm = () =>
                                 }}/>
                             </div>
 
-                            <span htmlFor="errorMessage" className="text-left-alligned">{formData.errorMsg}</span>
+                            <span htmlFor="errorMessage" className="errorMessage2">{formData.errorMsg}</span>
 
                             <div className="group">
                                 <button type="submit" className="button" >Login</button>

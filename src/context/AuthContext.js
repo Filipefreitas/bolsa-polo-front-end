@@ -68,15 +68,14 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('roles', JSON.stringify(data.userRole));
         localStorage.setItem('permissions', JSON.stringify(usePermissions));
 
-        return true;
+        return { success: true };
       } 
       else {
         console.error('Login failed:', data.message);
-        return false;
+        return { success: false, message: data.message };
       }
     } catch (error) {
-      console.error('There was an error during login:', error);
-      return false;
+      return { success: false, message: 'Erro durante login' };
     }
   };
 

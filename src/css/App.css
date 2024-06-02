@@ -397,6 +397,11 @@ textarea.form-control{
     font-size: 12px;
 }
 
+.errorMessage2{
+    color: #e3e0e0;
+    font-size: 12px;
+}
+
 /********************USER LIST TABLE***********************/
 .table-container {
     font-family: 'Open Sans', sans-serif;
@@ -447,18 +452,17 @@ textarea.form-control{
     background-color: #b7b9ba;
     border: none;
     border-radius: 99px;
-    width: 32px;
+    width: 30px;
     height: 14px;
     transition: background-color 0.1s ease, border-color 0.2s ease;
     cursor: pointer;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.529);
     position: relative;
     top:50%;
 }
 
 .toggle-btn .thumb {
-    height: 13px;
-    width: 13px;
+    height: 12px;
+    width: 12px;
     background-color: #fff;
     border-radius: 99px;
     transform: translateX(0);
@@ -478,19 +482,20 @@ textarea.form-control{
 }
 
 .toggle-btn.toggled .thumb {
-    left: calc(33px - 18px)
+    left: calc(33px - 16px)
 }
 
 /********************FOOTER***********************/
 #footer{
     width: 100vw;
-    background-color: #373a47;
+    background-color: #6c7187;
     color: white;         
     text-align: center;    
     padding: 1rem 0;       
     position: fixed;       
     bottom: 0;
-    left: 0;             
+    left: 0;     
+    font-size: 14px;        
     z-index: 1000;             
 }
 
