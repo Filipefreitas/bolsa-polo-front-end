@@ -20,7 +20,7 @@ const LoginPage = () =>
         }, []);
 
     return (
-        <div> 
+        <div className='main'>
             <Sidebar/>
             <Header/>
                 <main>

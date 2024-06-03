@@ -6,7 +6,7 @@ import AddVoucherForm from "../components/AddVoucherForm.js";
 const NewVouchersPage = (props) => 
 {  
     return (
-        <div> 
+        <div className='main'>
             <Sidebar/>
             <Header/>
                 <main>

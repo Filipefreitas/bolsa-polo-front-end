@@ -3,12 +3,12 @@ import React from 'react'
 const VoucherListTable = (props) => {
   
     return (
-        <main>
+        <div>
             <table id="user-table" className='table-container'>
                 <thead>
                     <tr>
                         <th><h1>Id voucher</h1></th>
-                        <th><h1>Percentual desconto</h1></th>
+                        <th><h1>Perc desconto</h1></th>
                         <th><h1>Status</h1></th>
                         <th><h1>Data criação</h1></th>
                         <th><h1>Data solicitação</h1></th>
@@ -29,7 +29,7 @@ const VoucherListTable = (props) => {
                             <td>{voucher.percDiscount}</td>
                             <td>{voucher.status}</td>
                             <td>{(new Date(voucher.createdAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' })}</td>
-                            <td>{voucher.evaluatedAt ? (new Date(voucher.requestedAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' }): null}</td>
+                            <td>{voucher.requestedAt ? (new Date(voucher.requestedAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' }): null}</td>
                             <td>{voucher.evaluatedAt ? (new Date(voucher.evaluatedAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' }): null}</td>
                             <td>{voucher.evaluatedBy}</td>
                             <td>{voucher.studentVouchers ? voucher.studentVouchers.nmAluno : null}</td>
@@ -41,7 +41,7 @@ const VoucherListTable = (props) => {
                     ))}
                 </tbody>   
             </table>
-        </main>
+        </div>
     )
 }
 

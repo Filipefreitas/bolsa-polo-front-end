@@ -12,10 +12,10 @@ const StudentVoucherList = (props) => {
           <div>
           {props.studentVouchers.map((studentVoucher,index)=>(
             <StudentVoucherCard key={index} id={studentVoucher._id} 
-            percDiscount={studentVoucher.percDiscount}
-            status={studentVoucher.status}
-            requestedAt={studentVoucher.requestedAt}
-            evaluatedAt={studentVoucher.evaluatedAt}
+              percDiscount={studentVoucher.percDiscount}
+              status={studentVoucher.status}
+              requestedAt={studentVoucher.requestedAt}
+              evaluatedAt={studentVoucher.evaluatedAt}
             />))}
         </div>  
         ) : (

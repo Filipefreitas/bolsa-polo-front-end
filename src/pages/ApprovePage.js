@@ -75,7 +75,7 @@ const ApprovePage = (props) => {
     }
 
     return (
-        <div>
+        <div className='main'>
             <Sidebar/>
             <Header/>
             <main>

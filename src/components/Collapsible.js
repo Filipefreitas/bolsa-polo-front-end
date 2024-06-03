@@ -5,28 +5,32 @@ const Collapsible = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleCollapsible = () => {
-    setIsOpen(!isOpen);
+      setIsOpen(!isOpen);
   };
 
   return (
-    <div className="collapsible">
-      <div className="collapsible-header" onClick={toggleCollapsible}>
-        {props.title}
+      <div>
+          <div className="collapsible-header" onClick={toggleCollapsible}>
+              {props.title}
+          </div>
+          {isOpen && (
+              <div className="collapsible-body">
+                  {props.children}
+                  <section className="movie-list-container grid grid-col-3">
+                      {props.vouchers.map((voucher) => (
+                          <VoucherItemCard
+                              key={voucher._id}
+                              id={voucher._id}
+                              onDeleteVoucher={props.onDeleteVoucher}
+                              percDiscount={voucher.percDiscount}
+                              status={voucher.status}
+                              createdAt={voucher.createdAt}
+                          />
+                      ))}
+                  </section>
+              </div>
+          )}
       </div>
-      {isOpen && <div className="collapsible-body">
-      <section className="movie-list-container">
-          {props.vouchers.map((voucher)=>(<VoucherItemCard 
-            key={voucher._id} 
-            id={voucher._id} 
-            onDeleteVoucher={props.onDeleteVoucher} 
-            percDiscount={voucher.percDiscount} 
-            status={voucher.status} 
-            createdAt={voucher.createdAt}
-            />
-          ))}
-        </section>
-        </div>}
-    </div>
   );
 };
 

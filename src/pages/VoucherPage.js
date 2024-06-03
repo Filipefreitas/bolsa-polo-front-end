@@ -94,7 +94,7 @@ const VoucherPage = (props) => {
     }    
     
     return (
-        <div>
+        <div className='main'>
             <Sidebar/>
             <Header/>
             <Modal modal={props.modal} onHide={props.hideModal}/>

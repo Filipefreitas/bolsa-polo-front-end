@@ -73,41 +73,37 @@ const HomePage = (props) =>
     }
 
     return (
-        <div>
+        <div className='main'>
             <Sidebar/>
             <Modal modal={props.modal} onHide={props.hideModal}/>
 
             <Header/>
                 <main>
-                    <section>
-                    
-                        <h2 className="section-title">Todos os Vouchers</h2>
-                        <h3 className="section-title">Buscar voucher por percentual</h3>
+                    <h2 className="section-title">Todos os Vouchers</h2>
 
+                    <Collapsible
+                        title="Lista de todos os vouchers cadastrados"
+                        vouchers={vouchers} setVouchers={setVouchers} 
+                        onDeleteVoucher={deleteVoucher} 
+                    >
                         <SearchBox 
                             vouchers={vouchers} setVouchers={setVouchers} 
                             allVouchers={allVouchers} setAllVouchers={setAllVouchers}
                             onFilterVouchers={filterVouchers}
                         />
-                        </section>                                
+                     </Collapsible>
 
-                        <Collapsible
-                            title="Lista de todos os vouchers cadastrados"
-                            vouchers={vouchers} setVouchers={setVouchers} 
-                            onDeleteVoucher={deleteVoucher} 
-                        />
+                    <Collapsible
+                        title="Lista de todos os vouchers disponíveis"
+                        vouchers={availableVouchers} setVouchers={setAvailableVouchers} 
+                        onDeleteVoucher={deleteVoucher} 
+                    />
 
-                        <Collapsible
-                            title="Lista de todos os vouchers disponíveis"
-                            vouchers={availableVouchers} setVouchers={setAvailableVouchers} 
-                            onDeleteVoucher={deleteVoucher} 
-                        />
-
-                        <Collapsible
-                            title="Lista de todos os vouchers aguardando deferimento"
-                            vouchers={pendingVouchers} setVouchers={setPendingVouchers}     
-                            onDeleteVoucher={deleteVoucher} 
-                        />
+                    <Collapsible
+                        title="Lista de todos os vouchers aguardando deferimento"
+                        vouchers={pendingVouchers} setVouchers={setPendingVouchers}     
+                        onDeleteVoucher={deleteVoucher} 
+                    />
 
                 </main>
             <Footer/>

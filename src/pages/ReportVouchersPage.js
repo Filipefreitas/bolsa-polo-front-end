@@ -20,7 +20,7 @@ const ReportVouchersPage = () =>
         }, []);
 
     return (
-        <div> 
+        <div className='main'>
             <Sidebar/>
             <Header/>
                 <main>

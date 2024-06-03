@@ -105,14 +105,14 @@ const AddVoucherForm = (props) => {
                     <div className="form-control-container grid grid-col-2">
                         <div>
                             <label htmlFor="percDiscount">Percentual de desconto</label>
-                            <input className="form-control" type="text" id="percDiscount" value={formData.percDiscount} onChange={(event)=>{
+                            <input className="input-box-max" type="text" id="percDiscount" value={formData.percDiscount} onChange={(event)=>{
                                 setFormData({...formData, percDiscount : event.target.value});
                             }}/>
                         </div>
 
                         <div>
                             <label htmlFor="qtdVouchers">Quantidade de vouchers a serem criados</label>
-                            <input className="form-control" type="text" id="qtdVouchers" value={formData.qtdVouchers} onChange={(event)=>{
+                            <input className="input-box-max" type="text" id="qtdVouchers" value={formData.qtdVouchers} onChange={(event)=>{
                                 setFormData({...formData, qtdVouchers : event.target.value});
                             }}/>
                         </div>
@@ -122,7 +122,7 @@ const AddVoucherForm = (props) => {
                     <div htmlFor="errorMessage" className="text-left-alligned">{errorQtd}</div>
                 
                     <div className="form-control-container">
-                        <button className="btn btn-primary" type="submit">Criar vuochers</button>
+                        <button className="registerbtn" type="submit">Criar vuochers</button>
                     </div>  
                 </form>
             </section>

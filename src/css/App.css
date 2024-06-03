@@ -14,10 +14,6 @@ body{
     font-size: 1.1rem;
 }
 
-h1,h2,h3{
-    margin-bottom: 16px;
-}
-
 p{
     margin-bottom: 10px;
 }
@@ -32,7 +28,7 @@ p{
 
 .container{
     width:90%;
-    max-width: 800px;
+    max-width: 1100px;
     margin: 0px auto;
     padding:32px 0px;
 }
@@ -50,8 +46,12 @@ p{
 
 .icon-cursor {   
     cursor: pointer;
-
 }
+
+.icon-size-m{
+    font-size: medium + 6px;
+}
+
 
 .icon-size-xlg{
     font-size: x-large;
@@ -59,6 +59,10 @@ p{
 
 .icon-size-dbl-xlg{
     font-size: xx-large;
+}
+
+.icon-black {
+    color: black;
 }
 
 .grid{
@@ -110,6 +114,11 @@ p{
     column-gap: 5px;
 }
 
+.main {
+    margin-top: 60px;
+    padding: 1rem;
+}
+
 .hide{
     display:none;
 }
@@ -122,11 +131,6 @@ p{
 
 .left-10{
     margin-left: 10px;
-}
-
-/************HEADER**********/
-header h1 {
-    font-size: 1.6rem;
 }
 
 /*************** MODAL***************/
@@ -163,25 +167,32 @@ header h1 {
     font-weight:bold;
 }
 
+.input-box-max {
+    margin-top: 10px;
+    width:300px;
+    border: 1px solid black;
+    padding:5px;
+}
 /************************MOVIE LIST*******************/
 .movie-list-container{
     margin-top: 16px;
 }
 
 .movie-container{
-    background-color:#aaa;
+    width: 90%;
+    background-color:#aca9a9;
     margin-bottom: 10px;
-    padding:16px;
+    padding: 8px;
 }
 
 .movie-top-area > p{
     font-weight: 900;
-    font-size:calc(1rem + 5px);
-
+    font-size:calc(1rem + 4px);
 }
 
 .movie-description{
-    font-size:calc(1rem - 2px);
+    font-size:calc(1rem - 4px);
+    margin: 2px;
 }
 
 .margin-10{
@@ -377,13 +388,13 @@ textarea.form-control{
 }
 
 .registerbtn {
-    background-color: #1161ee;
+    background-color: #373a47;
     color: white;
     padding: 16px 20px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 25%;
+    width: 144px;
     opacity: 0.9;
 	border-radius:25px;
 }
@@ -402,7 +413,7 @@ textarea.form-control{
     font-size: 12px;
 }
 
-/********************USER LIST TABLE***********************/
+/******************** TABLE***********************/
 .table-container {
     font-family: 'Open Sans', sans-serif;
     border-collapse: collapse;
@@ -414,6 +425,7 @@ textarea.form-control{
     display: table;
     font-size: 11px;
     font-weight: 300;
+    white-space: nowrap;
 }
 
 .table-container th h1 {
@@ -425,7 +437,7 @@ textarea.form-control{
 
 .table-container td, .table-container th {
     border: 1px solid #ddd;
-    padding-left: 6px;
+    padding: 0 4px;
     vertical-align: middle; 
 }
   
@@ -485,13 +497,32 @@ textarea.form-control{
     left: calc(33px - 16px)
 }
 
-/********************FOOTER***********************/
-#footer{
+/********************HEADER***********************/
+header {
     width: 100vw;
-    background-color: #6c7187;
+    height: 60px; 
+    background-color: #774cce  ;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+header h1 {
+    text-align: center;
+}
+
+/********************FOOTER***********************/
+#footer {
+    width: 100vw;
+    background-color: #774cce;
     color: white;         
     text-align: center;    
-    padding: 1rem 0;       
+    padding: 0.5rem 0;       
     position: fixed;       
     bottom: 0;
     left: 0;     
@@ -509,6 +540,7 @@ textarea.form-control{
     background-color: #f1f1f1;
     padding: 10px;
     cursor: pointer;
+    margin-top: 10px;
 }
   
 .collapsible-body {
@@ -521,13 +553,13 @@ textarea.form-control{
     position: fixed;
     width: 36px;
     height: 30px;
-    left: 36px;
-    top: 36px;
+    left: 30px;
+    top: 15px;
 }
   
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-    background: #373a47;
+    background: #e9e9e9;
 }
   
 /* Color/shape of burger icon bars on hover*/
