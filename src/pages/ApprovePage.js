@@ -79,33 +79,29 @@ const ApprovePage = (props) => {
             <Sidebar/>
             <Header/>
             <main>
-                <div className="grid grid-col-2">
-                    <div>
-                        <section>
-                            <h4>Dados voucher</h4>
-                            <p>Id do voucher: {voucher._id}</p>
-                            <p>Percentual de desconto: {voucher.percDiscount}%</p>
-                            <p>Status do voucher: {voucher.status}</p>
-                            <p>Criado em: {voucher.createdAt}</p>
-                            <p>Solicitado em: {voucher.requestedAt}</p>
-                        </section>                        
+                <div className="grid grid-col-2 movie-list-container">
+                    <div className="movie-description">
+                        <h3>Dados voucher</h3>
+                        <p>Id do voucher: {voucher._id}</p>
+                        <p>Percentual de desconto: {voucher.percDiscount}%</p>
+                        <p>Status do voucher: {voucher.status}</p>
+                        <p>Criado em: {voucher.createdAt}</p>
+                        <p>Solicitado em: {voucher.requestedAt}</p>
                     </div>
 
-                    <div>
-                        <section>
-                            <h4>Dados aluno</h4>
-                            <p>Nome do Aluno: {voucher.studentVouchers.nmAluno}</p>
-                            <p>CD RA: {voucher.studentVouchers.cdRa}</p>
-                            <p>Curso: {voucher.studentVouchers.dsEspecialidade}</p>
-                            <p>CD unidade: {voucher.studentVouchers.cdUnidade}</p>
-                            <p>Unidade: {voucher.studentVouchers.dsUnidade}</p>
-                            <p>Situação Acadêmica: {voucher.studentVouchers.dsSituacaoAcademica}</p>
-                        </section>
+                    <div className="movie-description">
+                        <h3>Dados aluno</h3>
+                        <p>Nome do Aluno: {voucher.studentVouchers.nmAluno}</p>
+                        <p>CD RA: {voucher.studentVouchers.cdRa}</p>
+                        <p>Curso: {voucher.studentVouchers.dsEspecialidade}</p>
+                        <p>CD unidade: {voucher.studentVouchers.cdUnidade}</p>
+                        <p>Unidade: {voucher.studentVouchers.dsUnidade}</p>
+                        <p>Situação Acadêmica: {voucher.studentVouchers.dsSituacaoAcademica}</p>
                     </div>
                 </div>
-                <div>
-                    <button className="btn btn-primary" onClick={()=> updateVoucher('approve')}>Deferir</button>
-                    <button className="btn btn-primary" onClick={()=> updateVoucher('deny')}>Indeferir</button>
+                <div className="movie-list-container">
+                    <button className="registerbtn" onClick={()=> updateVoucher('approve')}>Deferir</button>
+                    <button className="registerbtn" onClick={()=> updateVoucher('deny')}>Indeferir</button>
                 </div>
             </main>
             <Footer/>

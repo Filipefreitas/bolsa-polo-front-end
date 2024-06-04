@@ -101,13 +101,14 @@ const AddVoucherForm = (props) => {
         <main>
             <Modal modal={props.modal} onHide={props.hideModal}/>
             <section>
-                <form action="" onSubmit={onCreateVoucher}>
-                    <div className="form-control-container grid grid-col-2">
+                <form action="" onSubmit={onCreateVoucher} className="form-control-container">
+                    <div>
                         <div>
                             <label htmlFor="percDiscount">Percentual de desconto</label>
                             <input className="input-box-max" type="text" id="percDiscount" value={formData.percDiscount} onChange={(event)=>{
                                 setFormData({...formData, percDiscount : event.target.value});
                             }}/>
+                            <p htmlFor="errorMessage" className="errorMessage text-left-alligned">{errorPerc}</p>
                         </div>
 
                         <div>
@@ -116,10 +117,9 @@ const AddVoucherForm = (props) => {
                                 setFormData({...formData, qtdVouchers : event.target.value});
                             }}/>
                         </div>
+                        <p htmlFor="errorMessage" className="errorMessage text-left-alligned">{errorQtd}</p>
                     </div>
                     
-                    <div htmlFor="errorMessage" className="text-left-alligned">{errorPerc}</div>
-                    <div htmlFor="errorMessage" className="text-left-alligned">{errorQtd}</div>
                 
                     <div className="form-control-container">
                         <button className="registerbtn" type="submit">Criar vuochers</button>

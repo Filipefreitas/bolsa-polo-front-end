@@ -19,7 +19,7 @@ import { useAuth } from '../context/AuthContext'
                 <span>
                 {props.status === 'available' && permissions.includes('link')? (
                     <Link to = {`/vouchers/${props.id}` }>    
-                      <FaLink className="icon-cursor icon-size-m icon-black margin-10"/>
+                      <FaLink className="icon-cursor icon-size-m icon-black margin-left-10"/>
                     </Link>
                     ): null
                   }    
@@ -28,7 +28,7 @@ import { useAuth } from '../context/AuthContext'
                 <span>
                     {props.status === 'waiting' && permissions.includes('approve') ? (
                       <Link to = {`/approve/${props.id}`}>    
-                        <RiPassValidLine className="icon-cursor icon-size-m icon-black margin-10"/>
+                        <RiPassValidLine className="icon-cursor icon-size-m icon-black margin-left-10"/>
                       </Link> 
                     ): null
                   }
@@ -36,7 +36,7 @@ import { useAuth } from '../context/AuthContext'
                                 
                 <span>
                   {props.status === 'available' && permissions.includes('delete') ? (
-                    <FaWindowClose onClick={clickHandleDel} className="icon-cursor icon-size-m icon-black margin-10"/>
+                    <FaWindowClose onClick={clickHandleDel} className="icon-cursor icon-size-m icon-black margin-left-10"/>
                   ): null
                 }
                 </span>

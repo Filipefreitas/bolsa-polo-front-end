@@ -9,7 +9,7 @@ const StudentVoucherList = (props) => {
   return(
     <div>
        {props.totalStudentVouchers > 0 ? (
-          <div>
+          <div className="movie-list-container grid grid-col-3">
           {props.studentVouchers.map((studentVoucher,index)=>(
             <StudentVoucherCard key={index} id={studentVoucher._id} 
               percDiscount={studentVoucher.percDiscount}

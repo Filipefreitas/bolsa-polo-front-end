@@ -39,7 +39,7 @@ p{
     width:110px;
 }
 
-.btn-primary{   
+.btn-primary {   
     color:white;
     background-color: black;
 }
@@ -129,10 +129,6 @@ p{
     font-size:cal(1rem -2px);
 }
 
-.left-10{
-    margin-left: 10px;
-}
-
 /*************** MODAL***************/
 .modal{
     position:absolute;
@@ -168,8 +164,8 @@ p{
 }
 
 .input-box-max {
-    margin-top: 10px;
-    width:300px;
+    margin: 8px 0;
+    width: 240px;
     border: 1px solid black;
     padding:5px;
 }
@@ -195,8 +191,12 @@ p{
     margin: 2px;
 }
 
-.margin-10{
+.margin-left-10 {
     margin-left: 10px;
+}
+
+.margin-top-25 {
+    margin-top: 25px
 }
 
 /********************ADD FORM***********************/
@@ -391,7 +391,7 @@ textarea.form-control{
     background-color: #373a47;
     color: white;
     padding: 16px 20px;
-    margin: 8px 0;
+    margin: 8px 2px;
     border: none;
     cursor: pointer;
     width: 144px;

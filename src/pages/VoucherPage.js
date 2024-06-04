@@ -100,9 +100,9 @@ const VoucherPage = (props) => {
             <Modal modal={props.modal} onHide={props.hideModal}/>
             <main>
                 <section id="">
-                    <div className="grid grid-col-2">
-                        <div className="">
-                            <h4>Dados voucher</h4>
+                    <div className="movie-description grid grid-col-3">
+                        <div className="form-control-container">
+                            <h3>Dados voucher</h3>
                             <p>Id do voucher: {voucher._id}</p>
                             <p>Percentual de desconto: {voucher.percDiscount}%</p>
                             <p>Status do voucher: {voucher.status}</p>
@@ -113,13 +113,13 @@ const VoucherPage = (props) => {
                                 <h3>Buscar aluno por RA</h3>
                                 
                                 <form action="" className="grid grid-col-1" onSubmit={onGetStudent}>
-                                    <input placeholder="Insira um RA" className="form-control-max" type="text" id="filter"
+                                    <input placeholder="Insira um RA" className="input-box-max" type="text" id="filter"
                                     value={searchBox} onChange={(event)=>{
                                         setSearchBox(event.target.value)
                                     }}/>
                                 <div>
                                     <span className="form-control-container">
-                                        <button className="btn btn-primary" type="submit">Buscar aluno</button>
+                                        <button className="registerbtn" type="submit">Buscar aluno</button>
                                     </span>  
                                 </div>
                                 </form>
@@ -128,7 +128,7 @@ const VoucherPage = (props) => {
                     </div>
 
                     <div>
-                        <div className="">
+                        <div className="movie-description margin-top-25">
                             {student ? (
                                 <div>
                                     <h3>Dados do aluno</h3>
@@ -139,7 +139,7 @@ const VoucherPage = (props) => {
                                     <p>Unidade: {student.dsUnidade}</p>
                                     <p>Situação Acadêmica: {student.dsSituacaoAcademica}</p>
                                     <p>Lista de vouchers:</p>
-                                        <StudentVoucherList 
+                                        <StudentVoucherList
                                             studentVouchers={student.studentVouchers} 
                                             student={student} 
                                             setStudent={setStudent}
@@ -147,7 +147,7 @@ const VoucherPage = (props) => {
                                             />
 
                                     <span className="form-control-container">
-                                        <button className="btn btn-primary" type="text" onClick={onLinkVoucher}>Atribuir voucher</button>
+                                        <button className="registerbtn" type="text" onClick={onLinkVoucher}>Atribuir voucher</button>
                                     </span> 
                                 </div>
                             ) : (

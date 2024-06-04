@@ -10,15 +10,16 @@ const HomePage = (props) =>
 {           
     const[allVouchers, setAllVouchers] = useState([]);
     const[vouchers, setVouchers] = useState([]);
-    const[pendingVouchers, setPendingVouchers] = useState([])
-    const[availableVouchers, setAvailableVouchers] = useState([])
+    const[pendingVouchers, setPendingVouchers] = useState([]);
+    const[availableVouchers, setAvailableVouchers] = useState([]);
+    const[filteredAvailableVouchers, setFilteredAvailableVouchers] = useState([]);
 
     useEffect(()=>{ 
         fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/vouchers`)
         .then(response=>response.json())
         .then(json=>{
-          setAllVouchers(json.data)
-          setVouchers(json.data)
+          setAllVouchers(json.data);
+          setVouchers(json.data);
         })
         .catch(err=>{
                 console.log(`Error ${err}`)
@@ -29,7 +30,7 @@ const HomePage = (props) =>
         fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/vouchers?status=waiting`)
         .then(response=>response.json())
         .then(json=>{
-        setPendingVouchers(json.data)
+        setPendingVouchers(json.data);
         })
         .catch(err=>{
                 console.log(`Error ${err}`)
@@ -40,7 +41,8 @@ const HomePage = (props) =>
         fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/vouchers?status=available`)
         .then(response=>response.json())
         .then(json=>{
-            setAvailableVouchers(json.data)
+            setAvailableVouchers(json.data);
+            setFilteredAvailableVouchers(json.data);
         })
         .catch(err=>{
                 console.log(`Error ${err}`)
@@ -49,24 +51,42 @@ const HomePage = (props) =>
 
     const filterVouchers = (input)=> { 
         let filteredVouchers = allVouchers.filter((voucher)=>{
-          return voucher.percDiscount.toString().includes(input)
+          return voucher.percDiscount.toString().includes(input);
         });
         
-        if(input === "")
-        {
+        if(input === "") {
           setVouchers(allVouchers);
+        } else {
+          setVouchers(filteredVouchers);
         }
-        setVouchers(filteredVouchers);
       }
+
+    const filterAvailableVouchers = (input) => {
+        let filteredVouchers = availableVouchers.filter((voucher)=>{
+            return voucher.percDiscount.toString().includes(input);
+        });
+        
+        if(input === "") {
+            setFilteredAvailableVouchers(availableVouchers);
+        } else {
+            setFilteredAvailableVouchers(filteredVouchers);
+        }
+    }
       
-      const deleteVoucher = (id)=>{
+    const deleteVoucher = (id)=>{
         fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/vouchers/${id}`, {
           method: 'DELETE'
         })
-        .then(props.setModal({
-              msg: "Voucher deletado com sucesso"
-              , visible: true
-          }))
+        .then(() => {
+            props.setModal({
+              msg: "Voucher deletado com sucesso",
+              visible: true
+          });
+          setAllVouchers(allVouchers.filter(voucher => voucher.id !== id));
+          setVouchers(vouchers.filter(voucher => voucher.id !== id));
+          setAvailableVouchers(availableVouchers.filter(voucher => voucher.id !== id));
+          setFilteredAvailableVouchers(filteredAvailableVouchers.filter(voucher => voucher.id !== id));
+        })
         .catch(err=>{
           console.log(`Error ${err}`)
          });
@@ -95,20 +115,27 @@ const HomePage = (props) =>
 
                     <Collapsible
                         title="Lista de todos os vouchers disponíveis"
-                        vouchers={availableVouchers} setVouchers={setAvailableVouchers} 
+                        vouchers={filteredAvailableVouchers} setVouchers={setFilteredAvailableVouchers} 
                         onDeleteVoucher={deleteVoucher} 
-                    />
+                    >
+                        <SearchBox 
+                            vouchers={filteredAvailableVouchers} setVouchers={setFilteredAvailableVouchers} 
+                            allVouchers={availableVouchers} setAllVouchers={setAvailableVouchers}
+                            onFilterVouchers={filterAvailableVouchers}
+                        />
+                    </Collapsible>
 
+                    
                     <Collapsible
                         title="Lista de todos os vouchers aguardando deferimento"
                         vouchers={pendingVouchers} setVouchers={setPendingVouchers}     
                         onDeleteVoucher={deleteVoucher} 
                     />
-
+                    
                 </main>
             <Footer/>
         </div>
     )
 }
 
-export default HomePage
+export default HomePage;
