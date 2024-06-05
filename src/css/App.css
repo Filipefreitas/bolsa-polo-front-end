@@ -129,6 +129,10 @@ p{
     font-size:cal(1rem -2px);
 }
 
+.m_title {
+    text-transform: capitalize;
+}
+
 /*************** MODAL***************/
 .modal{
     position:absolute;
@@ -169,13 +173,13 @@ p{
     border: 1px solid black;
     padding:5px;
 }
-/************************MOVIE LIST*******************/
+/************************VOUCHER LIST*******************/
 .movie-list-container{
     margin-top: 16px;
 }
 
 .movie-container{
-    width: 90%;
+    width: 85%;
     background-color:#aca9a9;
     margin-bottom: 10px;
     padding: 8px;
@@ -413,7 +417,35 @@ textarea.form-control{
     font-size: 12px;
 }
 
-/******************** TABLE***********************/
+/******************** CARD BY STATUS ***********************/
+.voucher-cards {
+    display: flex;
+    justify-content: center; 
+    gap: 1rem; 
+    margin-bottom: 2rem;
+}
+  
+.voucher-card {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 0 0 22%; 
+    max-width: 50%; 
+    text-align: center;
+}
+  
+.voucher-card h3 {
+    font-size: 1rem; 
+    margin: 0.5rem 0;
+}
+  
+.voucher-card p {
+    font-size: 2rem; 
+    margin: 0.5rem 0;
+}
+
+/******************** TABLE ***********************/
 .table-container {
     font-family: 'Open Sans', sans-serif;
     border-collapse: collapse;
