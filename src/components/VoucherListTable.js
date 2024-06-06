@@ -11,9 +11,10 @@ const VoucherListTable = (props) => {
                         <th><h1>Perc desconto</h1></th>
                         <th><h1>Status</h1></th>
                         <th><h1>Data criação</h1></th>
+                        <th><h1>Solicitado por</h1></th>
                         <th><h1>Data solicitação</h1></th>
-                        <th><h1>Data análise</h1></th>
                         <th><h1>Analisado por</h1></th>
+                        <th><h1>Data análise</h1></th>
                         <th><h1>Nome aluno</h1></th>
                         <th><h1>Curso</h1></th>
                         <th><h1>Cod unidade</h1></th>
@@ -29,9 +30,10 @@ const VoucherListTable = (props) => {
                             <td>{voucher.percDiscount}</td>
                             <td>{voucher.status}</td>
                             <td>{(new Date(voucher.createdAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' })}</td>
+                            <td>{voucher.requestedBy}</td>
                             <td>{voucher.requestedAt ? (new Date(voucher.requestedAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' }): null}</td>
-                            <td>{voucher.evaluatedAt ? (new Date(voucher.evaluatedAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' }): null}</td>
                             <td>{voucher.evaluatedBy}</td>
+                            <td>{voucher.evaluatedAt ? (new Date(voucher.evaluatedAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' }): null}</td>
                             <td>{voucher.studentVouchers ? voucher.studentVouchers.nmAluno : null}</td>
                             <td>{voucher.studentVouchers ? voucher.studentVouchers.dsEspecialidade : null}</td>
                             <td>{voucher.studentVouchers ? voucher.studentVouchers.cdUnidade : null}</td>

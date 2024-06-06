@@ -1,4 +1,5 @@
 import {useEffect,useState} from "react";
+import {useAuth} from '../context/AuthContext'
 import {useParams} from "react-router-dom"
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -8,6 +9,8 @@ import StudentVoucherList  from "../components/StudentVoucherList";
 
 const VoucherPage = (props) => {
     
+    const {user} = useAuth(); 
+
     const {id} = useParams();
 
     const [voucher, setVoucher] = useState({})
@@ -74,9 +77,10 @@ const VoucherPage = (props) => {
 
         //atualiza o status do voucher e o associa a um aluno
         const voucherKeyValueObject = {
-            status: "waiting",
-            requestedAt: Date.now(),
-            studentVouchers: {
+            "status": "waiting",
+            "requestedBy": user,
+            "requestedAt": Date.now(),
+            "studentVouchers": {
                 _id: student._id
             } 
         };

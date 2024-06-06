@@ -1,12 +1,12 @@
 import {useEffect,useState} from "react";
-import { useAuth } from '../context/AuthContext'
+import {useAuth} from '../context/AuthContext'
 import {useParams} from "react-router-dom"
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
 
 const ApprovePage = (props) => {
-    const { user } = useAuth(); 
+    const {user} = useAuth(); 
 
     const {id} = useParams();
 
@@ -53,9 +53,9 @@ const ApprovePage = (props) => {
         }
 
         const voucherKeyValueObject = {
-                "status": status,
-                "evaluatedBy": user,
-                "evaluatedAt": Date.now()
+            "status": status,
+            "evaluatedBy": user,
+            "evaluatedAt": Date.now()
         };
           
         fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/vouchers/${voucher._id}`, {

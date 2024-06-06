@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react'
+import {React, useState, useEffect} from 'react'
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SearchBox from "../components/SearchBox";
@@ -125,13 +125,11 @@ const HomePage = (props) =>
                         />
                     </Collapsible>
 
-                    
                     <Collapsible
                         title="Lista de todos os vouchers aguardando deferimento"
                         vouchers={pendingVouchers} setVouchers={setPendingVouchers}     
                         onDeleteVoucher={deleteVoucher} 
                     />
-                    
                 </main>
             <Footer/>
         </div>
