@@ -3,17 +3,15 @@ import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar.js";
 import RegistrationForm  from "../components/RegistrationForm";
 
-const RegistrationPage = (props) => 
+const RegistrationPage = () => 
 {  
     return (
         <div className='main'>
             <Sidebar/>
             <Header/>
-            <main>
-               <RegistrationForm
-                    modal={props.modal} setModal={props.setModal} hideModal={props.hideModal}
-               />
-            </main>
+                <main>
+                   <RegistrationForm/>
+                </main>
             <Footer/>
         </div>
     )

@@ -1,10 +1,9 @@
-import React from 'react'
-import {useState} from 'react'
+import React, {useState} from 'react'
 
-const SearchBox = (props) => {
+const SearchBox = ({filterFunction}) => {
     
     const [searchBox, setSearchBox] = useState("");
-    
+
     return (
         <section className={"search-box-container"}>
 
@@ -14,7 +13,7 @@ const SearchBox = (props) => {
                 <input placeholder="Insira um percentual de desconto" className="input-box-max" type="text" id="filter"
                 value={searchBox} onChange={(event)=>{
                     setSearchBox(event.target.value)
-                    props.onFilterVouchers(event.target.value)
+                    filterFunction(event.target.value)
                 }}/>
             </form>
     

@@ -1,7 +1,10 @@
-import { useState} from 'react'
+import {useState, useContext} from 'react'
 import Modal from '../components/Modal'
+import VoucherContext from '../context/VoucherContext';
 
-const AddVoucherForm = (props) => {
+const AddVoucherForm = () => {
+
+    const {setModal} = useContext(VoucherContext);
 
     const [errorPerc, setErrorPerc] = useState("");
     const [errorQtd, setErrorQtd] = useState("");
@@ -80,7 +83,7 @@ const AddVoucherForm = (props) => {
 
                 if(i === formData.qtdVouchers - 1)
                 {
-                    props.setModal({
+                    setModal({
                         msg: "Vouchers cadastrados com sucesso"
                         , visible: true
                     })
@@ -99,7 +102,7 @@ const AddVoucherForm = (props) => {
 
     return (
         <main>
-            <Modal modal={props.modal} onHide={props.hideModal}/>
+            <Modal/>
             <section>
                 <form action="" onSubmit={onCreateVoucher} className="form-control-container">
                     <div>

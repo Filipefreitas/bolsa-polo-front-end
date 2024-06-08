@@ -1,24 +1,25 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {useAuth} from '../context/AuthContext'
 import {Link} from "react-router-dom"
 import { FaWindowClose } from "react-icons/fa";
 import { FaLink } from "react-icons/fa";
 import { RiPassValidLine } from "react-icons/ri";
-import { useAuth } from '../context/AuthContext'
+import VoucherContext from '../context/VoucherContext';
 
-  const VoucherItemCard = (props) => {
+const VoucherItemCard = ({ id, percDiscount, status, createdAt }) => {
 
-  const { permissions } = useAuth(); 
-  const clickHandleDel = ()=> props.onDeleteVoucher(props.id);
+  const {permissions} = useAuth(); 
+  const {deleteVoucher} = useContext(VoucherContext);
 
     return (
       <div className="movie-container">
         <div className="grid grid-col-2 movie-top-area">
-            <p className="">{props.percDiscount}%</p>
+            <p className="">{percDiscount}%</p>
             <div className='grid-x-right'>
               <span>
                 <span>
-                {props.status === 'available' && permissions.includes('link')? (
-                    <Link to = {`/vouchers/${props.id}` }>    
+                {status === 'available' && permissions.includes('link')? (
+                    <Link to = {`/vouchers/${id}`}>    
                       <FaLink className="icon-cursor icon-size-m icon-black margin-left-10"/>
                     </Link>
                     ): null
@@ -26,8 +27,8 @@ import { useAuth } from '../context/AuthContext'
                 </span>
                 
                 <span>
-                    {props.status === 'waiting' && permissions.includes('approve') ? (
-                      <Link to = {`/approve/${props.id}`}>    
+                    {status === 'waiting' && permissions.includes('approve') ? (
+                      <Link to = {`/approve/${id}`}>    
                         <RiPassValidLine className="icon-cursor icon-size-m icon-black margin-left-10"/>
                       </Link> 
                     ): null
@@ -35,8 +36,8 @@ import { useAuth } from '../context/AuthContext'
                 </span> 
                                 
                 <span>
-                  {props.status === 'available' && permissions.includes('delete') ? (
-                    <FaWindowClose onClick={clickHandleDel} className="icon-cursor icon-size-m icon-black margin-left-10"/>
+                  {status === 'available' && permissions.includes('delete') ? (
+                    <FaWindowClose onClick={() => deleteVoucher(id)} className="icon-cursor icon-size-m icon-black margin-left-10"/>
                   ): null
                 }
                 </span>
@@ -45,9 +46,9 @@ import { useAuth } from '../context/AuthContext'
             </div>
         </div>
 
-        <p className="movie-description">Id: {props.id}</p>
-        <p className="movie-description">Status: {props.status}</p>
-        <p className="movie-description">Criado em: {(new Date(props.createdAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' })}</p>
+        <p className="movie-description">Id: {id}</p>
+        <p className="movie-description">Status: {status}</p>
+        <p className="movie-description">Criado em: {(new Date(createdAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' })}</p>
     </div> 
   )
 }

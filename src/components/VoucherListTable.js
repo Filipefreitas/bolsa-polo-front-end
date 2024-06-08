@@ -1,7 +1,10 @@
-import React from 'react'
+import React, {useContext} from 'react';
+import VoucherContext from '../context/VoucherContext'; 
 
-const VoucherListTable = (props) => {
+const VoucherListTable = () => {
   
+    const {allVouchers} = useContext(VoucherContext);
+
     return (
         <div>
             <table id="user-table" className='table-container'>
@@ -24,7 +27,7 @@ const VoucherListTable = (props) => {
                 </thead>
 
                 <tbody>
-                    {props.allVouchers.map((voucher) => (
+                    {allVouchers.map((voucher) => (
                         <tr key={voucher._id}>
                             <td>{voucher._id}</td>
                             <td>{voucher.percDiscount}</td>

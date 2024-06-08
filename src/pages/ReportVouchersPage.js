@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react'
+import React from 'react'
 import Header from "../components/Header.js";
 import Footer from "../components/Footer.js";
 import Sidebar from "../components/Sidebar.js";
@@ -7,26 +7,13 @@ import VoucherStatusCard from "../components/VoucherStatusCard.js"
 
 const ReportVouchersPage = () => 
 {  
-    const[allVouchers, setAllVouchers] = useState([]);
-
-    useEffect(()=>{ 
-        fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/vouchers`)
-        .then(response=>response.json())
-        .then(json=>{
-          setAllVouchers(json.data)
-        })
-        .catch(err=>{
-                console.log(`Error ${err}`)
-          })
-        }, []);
-
     return (
         <div className='main'>
             <Sidebar/>
             <Header/>
                 <main>
-                    <VoucherStatusCard allVouchers={allVouchers}/>
-                    <VoucherListTable allVouchers={allVouchers}/>
+                    <VoucherStatusCard/>
+                    <VoucherListTable/>
                 </main>
             <Footer/>
         </div>

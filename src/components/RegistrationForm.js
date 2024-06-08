@@ -1,8 +1,11 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import Modal from './Modal';
+import VoucherContext from '../context/VoucherContext'; 
 
-const RegistrationForm = (props) => 
+const RegistrationForm = () => 
 {
+    const {setModal} = useContext(VoucherContext);
+
     const [formData, setFormData] = useState({
         firstName : "",
         lastName : "",
@@ -52,7 +55,7 @@ const RegistrationForm = (props) =>
                 })
             }
             else{
-                props.setModal({
+                setModal({
                     msg: "Usuário cadastrado com sucesso"
                     , visible: true
                 })
@@ -79,7 +82,7 @@ const RegistrationForm = (props) =>
     
     return (
         <section id="register-section title">
-            <Modal modal={props.modal} onHide={props.hideModal}/>
+            <Modal/>
             
             <form action="" onSubmit={onCreateAccount}> 
                 <h3>Cadastrar usuário</h3>

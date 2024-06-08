@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import VoucherContext from '../context/VoucherContext';
 
 const groupVouchersByStatus = (vouchers) => {
   return vouchers.reduce((acc, voucher) => {
@@ -11,8 +12,13 @@ const groupVouchersByStatus = (vouchers) => {
   }, {});
 };
 
-const VoucherStatusCard = ({ allVouchers }) => {
-  const groupedVouchers = groupVouchersByStatus(allVouchers);
+const VoucherStatusCard = () => {
+  const { allVouchers } = useContext(VoucherContext);
+  const [groupedVouchers, setGroupedVouchers] = useState({});
+
+  useEffect(() => {
+    setGroupedVouchers(groupVouchersByStatus(allVouchers));
+  }, [allVouchers]);
 
   const sortedGroupedVouchers = Object.entries(groupedVouchers).sort(([statusA], [statusB]) => {
     return statusA.localeCompare(statusB); 

@@ -1,4 +1,4 @@
-import {useEffect,useState} from "react";
+import {useEffect,useState,useContext} from "react";
 import {useAuth} from '../context/AuthContext'
 import {useParams} from "react-router-dom"
 import Header from "../components/Header";
@@ -6,10 +6,13 @@ import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
 import Modal from "../components/Modal";
 import StudentVoucherList  from "../components/StudentVoucherList";
+import VoucherContext from "../context/VoucherContext";
 
-const VoucherPage = (props) => {
+const VoucherPage = () => {
     
     const {user} = useAuth(); 
+
+    const {setModal} = useContext(VoucherContext);
 
     const {id} = useParams();
 
@@ -67,7 +70,7 @@ const VoucherPage = (props) => {
             },
             body: JSON.stringify(studentKeyValueObject)
         })
-        .then(props.setModal({
+        .then(setModal({
             msg: "Voucher associado ao aluno. Aguardar deferimento"
             , visible: true
         }))
@@ -101,7 +104,7 @@ const VoucherPage = (props) => {
         <div className='main'>
             <Sidebar/>
             <Header/>
-            <Modal modal={props.modal} onHide={props.hideModal}/>
+            <Modal/>
             <main>
                 <section id="">
                     <div className="movie-description grid grid-col-3">

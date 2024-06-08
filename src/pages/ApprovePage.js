@@ -1,11 +1,14 @@
-import {useEffect,useState} from "react";
+import {useEffect,useState,useContext} from "react";
 import {useAuth} from '../context/AuthContext'
 import {useParams} from "react-router-dom"
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
+import VoucherContext from '../context/VoucherContext';  
 
-const ApprovePage = (props) => {
+const ApprovePage = () => {
+    const {setModal} = useContext(VoucherContext);
+
     const {user} = useAuth(); 
 
     const {id} = useParams();
@@ -65,7 +68,7 @@ const ApprovePage = (props) => {
             },
             body: JSON.stringify(voucherKeyValueObject)
         })
-        .then(props.setModal({
+        .then(setModal({
             msg: `Voucher ${modalStatus}`
             , visible: true
         }))

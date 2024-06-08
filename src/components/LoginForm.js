@@ -1,11 +1,11 @@
 import {useState} from 'react'
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import {useNavigate} from 'react-router-dom';
+import {useAuth} from '../context/AuthContext';
 
 const LoginForm = () => 
 {
     const navigate = useNavigate();
-    const { login } = useAuth();
+    const {login} = useAuth();
 
     const [formData, setFormData] = useState({
         userName: "",

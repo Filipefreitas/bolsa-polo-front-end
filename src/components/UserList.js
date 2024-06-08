@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import ToggleButton from './ToggleButton'
+import VoucherContext from '../context/VoucherContext.js';
 
-const UserList = (props) => {
+const UserList = () => {
   
+    const {users} = useContext(VoucherContext);
+
     return (
         <main>
             <table id="user-table" className='table-container'>
@@ -20,7 +23,7 @@ const UserList = (props) => {
                 </thead>
 
                 <tbody>
-                    {props.users.map((user) => (
+                    {users.map((user) => (
                         <tr key={user._id}>
                             <td>{user.userName}</td>
                             <td>{user.firstName}</td>

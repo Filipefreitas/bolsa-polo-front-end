@@ -13,7 +13,7 @@ import { FaTable } from "react-icons/fa";
 import '../css/App.css';
 
 const Sidebar = () => {
-    const { roles } = useAuth(); 
+    const {roles} = useAuth(); 
 
     const [isVoucherDropdownOpen, setIsVoucherDropdownOpen] = useState(false);
     const handleVoucherDropdownClick = () => {

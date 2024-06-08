@@ -3,16 +3,14 @@ import Footer from "../components/Footer.js";
 import Sidebar from "../components/Sidebar.js";
 import AddVoucherForm from "../components/AddVoucherForm.js";
 
-const NewVouchersPage = (props) => 
+const NewVouchersPage = () => 
 {  
     return (
         <div className='main'>
             <Sidebar/>
             <Header/>
                 <main>
-                    <AddVoucherForm
-                        modal={props.modal} setModal={props.setModal} hideModal={props.hideModal}
-                    />
+                    <AddVoucherForm/>
                 </main>
             <Footer/>
         </div>
