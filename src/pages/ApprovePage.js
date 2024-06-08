@@ -82,8 +82,8 @@ const ApprovePage = () => {
             <Sidebar/>
             <Header/>
             <main>
-                <div className="grid grid-col-2 movie-list-container">
-                    <div className="movie-description">
+                <div className="grid grid-col-2 voucher-list-container">
+                    <div className="voucher-description">
                         <h3>Dados voucher</h3>
                         <p>Id do voucher: {voucher._id}</p>
                         <p>Percentual de desconto: {voucher.percDiscount}%</p>
@@ -92,7 +92,7 @@ const ApprovePage = () => {
                         <p>Solicitado em: {voucher.requestedAt}</p>
                     </div>
 
-                    <div className="movie-description">
+                    <div className="voucher-description">
                         <h3>Dados aluno</h3>
                         <p>Nome do Aluno: {voucher.studentVouchers.nmAluno}</p>
                         <p>CD RA: {voucher.studentVouchers.cdRa}</p>
@@ -102,7 +102,7 @@ const ApprovePage = () => {
                         <p>Situação Acadêmica: {voucher.studentVouchers.dsSituacaoAcademica}</p>
                     </div>
                 </div>
-                <div className="movie-list-container">
+                <div className="voucher-list-container">
                     <button className="registerbtn" onClick={()=> updateVoucher('approve')}>Deferir</button>
                     <button className="registerbtn" onClick={()=> updateVoucher('deny')}>Indeferir</button>
                 </div>

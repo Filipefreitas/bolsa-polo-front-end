@@ -12,8 +12,8 @@ const VoucherItemCard = ({ id, percDiscount, status, createdAt }) => {
   const {deleteVoucher} = useContext(VoucherContext);
 
     return (
-      <div className="movie-container">
-        <div className="grid grid-col-2 movie-top-area">
+      <div className="voucher-container">
+        <div className="grid grid-col-2 voucher-top-area">
             <p className="">{percDiscount}%</p>
             <div className='grid-x-right'>
               <span>
@@ -46,9 +46,9 @@ const VoucherItemCard = ({ id, percDiscount, status, createdAt }) => {
             </div>
         </div>
 
-        <p className="movie-description">Id: {id}</p>
-        <p className="movie-description">Status: {status}</p>
-        <p className="movie-description">Criado em: {(new Date(createdAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' })}</p>
+        <p className="voucher-description">Id: {id}</p>
+        <p className="voucher-description">Status: {status}</p>
+        <p className="voucher-description">Criado em: {(new Date(createdAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' })}</p>
     </div> 
   )
 }

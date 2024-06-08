@@ -107,7 +107,7 @@ const VoucherPage = () => {
             <Modal/>
             <main>
                 <section id="">
-                    <div className="movie-description grid grid-col-3">
+                    <div className="voucher-description grid grid-col-3">
                         <div className="form-control-container">
                             <h3>Dados voucher</h3>
                             <p>Id do voucher: {voucher._id}</p>
@@ -135,7 +135,7 @@ const VoucherPage = () => {
                     </div>
 
                     <div>
-                        <div className="movie-description margin-top-25">
+                        <div className="voucher-description margin-top-25">
                             {student ? (
                                 <div>
                                     <h3>Dados do aluno</h3>

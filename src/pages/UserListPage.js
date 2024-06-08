@@ -1,21 +1,28 @@
-import React from 'react'
+import React from 'react';
+import {useUsers} from '../context/UserContext.js'
 import Header from "../components/Header.js";
 import Footer from "../components/Footer.js";
 import Sidebar from "../components/Sidebar.js";
-import UserList from "../components/UserList.js";
+import UserListTable from "../components/UserListTable.js";
+import StatusCard from "../components/StatusCard.js"
 
-const LoginPage = () => 
-{  
+const UserListPage = () => {
+    const {users} = useUsers(); 
+
     return (
         <div className='main'>
             <Sidebar/>
             <Header/>
                 <main>
-                    <UserList/>
+                    <StatusCard
+                        items={users} 
+                        getStatus={(user) => user.status} 
+                    />
+                    <UserListTable/>
                 </main>
             <Footer/>
         </div>
     )
 }
 
-export default LoginPage
+export default UserListPage

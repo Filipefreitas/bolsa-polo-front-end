@@ -1,53 +1,27 @@
-import React, {useContext} from 'react';
-import VoucherContext from '../context/VoucherContext'; 
+import React, { useContext } from 'react';
+import VoucherContext from '../context/VoucherContext';
+import Table from './Table';
 
 const VoucherListTable = () => {
-  
-    const {allVouchers} = useContext(VoucherContext);
+  const {allVouchers} = useContext(VoucherContext);
 
-    return (
-        <div>
-            <table id="user-table" className='table-container'>
-                <thead>
-                    <tr>
-                        <th><h1>Id voucher</h1></th>
-                        <th><h1>Perc desconto</h1></th>
-                        <th><h1>Status</h1></th>
-                        <th><h1>Data criação</h1></th>
-                        <th><h1>Solicitado por</h1></th>
-                        <th><h1>Data solicitação</h1></th>
-                        <th><h1>Analisado por</h1></th>
-                        <th><h1>Data análise</h1></th>
-                        <th><h1>Nome aluno</h1></th>
-                        <th><h1>Curso</h1></th>
-                        <th><h1>Cod unidade</h1></th>
-                        <th><h1>Unidade</h1></th>
-                        <th><h1>Situacao acadêmica</h1></th>
-                    </tr>
-                </thead>
+  const columns = [
+    { key: '_id', header: 'Id voucher' },
+    { key: 'percDiscount', header: 'Perc desconto' },
+    { key: 'status', header: 'Status' },
+    { key: 'createdAt', header: 'Data criação', render: (voucher) => (new Date(voucher.createdAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' }) },
+    { key: 'requestedBy', header: 'Solicitado por' },
+    { key: 'requestedAt', header: 'Data solicitação', render: (voucher) => voucher.requestedAt ? (new Date(voucher.requestedAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' }) : null },
+    { key: 'evaluatedBy', header: 'Analisado por' },
+    { key: 'evaluatedAt', header: 'Data análise', render: (voucher) => voucher.evaluatedAt ? (new Date(voucher.evaluatedAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' }) : null },
+    { key: 'studentVouchers.nmAluno', header: 'Nome aluno', render: (voucher) => voucher.studentVouchers ? voucher.studentVouchers.nmAluno : null },
+    { key: 'studentVouchers.dsEspecialidade', header: 'Curso', render: (voucher) => voucher.studentVouchers ? voucher.studentVouchers.dsEspecialidade : null },
+    { key: 'studentVouchers.cdUnidade', header: 'Cod unidade', render: (voucher) => voucher.studentVouchers ? voucher.studentVouchers.cdUnidade : null },
+    { key: 'studentVouchers.dsUnidade', header: 'Unidade', render: (voucher) => voucher.studentVouchers ? voucher.studentVouchers.dsUnidade : null },
+    { key: 'studentVouchers.dsSituacaoAcademica', header: 'Situacao acadêmica', render: (voucher) => voucher.studentVouchers ? voucher.studentVouchers.dsSituacaoAcademica : null },
+  ];
 
-                <tbody>
-                    {allVouchers.map((voucher) => (
-                        <tr key={voucher._id}>
-                            <td>{voucher._id}</td>
-                            <td>{voucher.percDiscount}</td>
-                            <td>{voucher.status}</td>
-                            <td>{(new Date(voucher.createdAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' })}</td>
-                            <td>{voucher.requestedBy}</td>
-                            <td>{voucher.requestedAt ? (new Date(voucher.requestedAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' }): null}</td>
-                            <td>{voucher.evaluatedBy}</td>
-                            <td>{voucher.evaluatedAt ? (new Date(voucher.evaluatedAt)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit', year: '2-digit' }): null}</td>
-                            <td>{voucher.studentVouchers ? voucher.studentVouchers.nmAluno : null}</td>
-                            <td>{voucher.studentVouchers ? voucher.studentVouchers.dsEspecialidade : null}</td>
-                            <td>{voucher.studentVouchers ? voucher.studentVouchers.cdUnidade : null}</td>
-                            <td>{voucher.studentVouchers ? voucher.studentVouchers.dsUnidade : null}</td>
-                            <td>{voucher.studentVouchers ? voucher.studentVouchers.dsSituacaoAcademica : null}</td>
-                        </tr>
-                    ))}
-                </tbody>   
-            </table>
-        </div>
-    )
-}
+  return <Table columns={columns} data={allVouchers} />;
+};
 
-export default VoucherListTable
+export default VoucherListTable;

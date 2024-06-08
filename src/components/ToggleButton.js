@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
-function ToggleButton({id, isActive}) {
-    const [toggled, setToggled] = useState(isActive);
+function ToggleButton({id, status}) {
+    const [toggled, setToggled] = useState(status);
 
     const onToggle = async ()=>{
         const updatedStatus = !toggled;
@@ -12,7 +12,7 @@ function ToggleButton({id, isActive}) {
             headers : {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ isActive: updatedStatus }),
+            body: JSON.stringify({ status: updatedStatus }),
         });
         
         if (!response.ok) {

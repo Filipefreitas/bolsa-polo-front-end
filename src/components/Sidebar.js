@@ -2,18 +2,15 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext'
 import { NavLink } from "react-router-dom";
 import { slide as Menu } from 'react-burger-menu';
-import { MdHome } from "react-icons/md";
-import { FaTicketAlt } from "react-icons/fa";
-import { FaRegUserCircle } from "react-icons/fa";
+import { MdHome, MdExpandLess, MdExpandMore, MdToggleOn } from "react-icons/md";
+import { FaTicketAlt, FaRegUserCircle, FaTable } from "react-icons/fa";
 import { IoMdPersonAdd } from "react-icons/io";
-import { MdToggleOn } from "react-icons/md";
 import { BsSendPlusFill } from "react-icons/bs";
-import { FaTable } from "react-icons/fa";
 
 import '../css/App.css';
 
 const Sidebar = () => {
-    const {roles} = useAuth(); 
+    const { roles } = useAuth(); 
 
     const [isVoucherDropdownOpen, setIsVoucherDropdownOpen] = useState(false);
     const handleVoucherDropdownClick = () => {
@@ -36,11 +33,11 @@ const Sidebar = () => {
                         </NavLink>
                     </li>
 
-                    {roles === 'admin' ? (
+                    {roles === 'admin' && (
                         <li>
                             <a onClick={handleVoucherDropdownClick} aria-haspopup="true" aria-expanded={isVoucherDropdownOpen} className="bm-item">
                                 <FaTicketAlt aria-hidden="true" className='fa'/>
-                                <span>Vouchers {isVoucherDropdownOpen ? '▲' : '▼'}</span>
+                                <span>Vouchers {isVoucherDropdownOpen ? <MdExpandLess /> : <MdExpandMore />}</span>
                             </a>
                             
                             {isVoucherDropdownOpen && (
@@ -59,14 +56,14 @@ const Sidebar = () => {
                                     </li>
                                 </ul>
                             )}
-                        </li>): null
-                    }    
+                        </li>
+                    )}    
 
-                    {roles === 'admin' ? (
+                    {roles === 'admin' && (
                         <li>
                             <a onClick={handleUserDropdownClick} aria-haspopup="true" aria-expanded={isUserDropdownOpen} className="bm-item">
                                 <FaRegUserCircle aria-hidden="true" className='fa'/>
-                                <span>Usuários {isUserDropdownOpen ? '▲' : '▼'}</span>
+                                <span>Usuários {isUserDropdownOpen ? <MdExpandLess /> : <MdExpandMore />}</span>
                             </a>
                             
                             {isUserDropdownOpen && (
@@ -85,8 +82,8 @@ const Sidebar = () => {
                                     </li>
                                 </ul>
                             )}
-                        </li>): null
-                    }    
+                        </li>
+                    )}
                 </ul>
             </nav>
         </Menu>

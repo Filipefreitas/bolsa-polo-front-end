@@ -6,7 +6,7 @@ const StudentVoucherList = ({totalStudentVouchers, studentVouchers}) => {
   return(
     <div>
        {totalStudentVouchers > 0 ? (
-          <div className="movie-list-container grid grid-col-3">
+          <div className="voucher-list-container grid grid-col-3">
           {studentVouchers.map((studentVoucher,index)=>(
             <StudentVoucherCard key={index} id={studentVoucher._id} 
               percDiscount={studentVoucher.percDiscount}

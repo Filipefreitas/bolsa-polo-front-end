@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import {AuthProvider } from '../context/AuthContext';
+import {AuthProvider} from '../context/AuthContext';
 import VoucherContext from '../context/VoucherContext';
-
-import '../css/App.css';
+import {UserProvider} from '../context/UserContext';
 import HomePage from "../pages/HomePage";
 import LoginForm from './LoginForm';
 import Modal from './Modal';
@@ -14,6 +13,7 @@ import NewVouchersPage from '../pages/NewVouchersPage';
 import LoginPage from "../pages/LoginPage";
 import UserListPage from "../pages/UserListPage";
 import ReportVouchersPage from "../pages/ReportVouchersPage";
+import '../css/App.css';
 
 const App = () => {
 
@@ -22,7 +22,6 @@ const App = () => {
   const[pendingVouchers, setPendingVouchers] = useState([]);
   const[availableVouchers, setAvailableVouchers] = useState([]);
   const[filteredAvailableVouchers, setFilteredAvailableVouchers] = useState([]);
-  const[users, setUser] = useState([])
 
   const[modal, setModal] = useState({
     msg: '',
@@ -31,10 +30,9 @@ const App = () => {
 
   const hideModal = ()=>{
     setModal({
-        msg: ""
-        , visible: false
-    })
-};
+      msg: ""
+      , visible: false
+  })};
 
   useEffect(()=>{ 
     fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/vouchers`)
@@ -67,21 +65,10 @@ const App = () => {
         setFilteredAvailableVouchers(json.data);
     })
     .catch(err=>{
-            console.log(`Error ${err}`)
+      console.log(`Error ${err}`)
     })
   }, []);
   
-  useEffect(()=>{ 
-    fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/users`)
-    .then(response=>response.json())
-    .then(json=>{
-        setUser(json.data)
-    })
-    .catch(err=>{
-            console.log(`Error ${err}`)
-      })
-  }, []);
-
   const filterVouchers = (input)=> { 
     let filteredVouchers = allVouchers.filter((voucher)=>{
       return voucher.percDiscount.toString().includes(input);
@@ -127,49 +114,54 @@ const App = () => {
 
   return (
     <AuthProvider>
+
       <VoucherContext.Provider 
-          value={{
-              modal, setModal, hideModal, 
-              allVouchers, setAllVouchers, 
-              vouchers, setVouchers, 
-              pendingVouchers, setPendingVouchers, 
-              availableVouchers, setAvailableVouchers, 
-              filteredAvailableVouchers, setFilteredAvailableVouchers, filterAvailableVouchers,
-              filterVouchers, deleteVoucher,
-              users, setUser
-              }}>
-        <Router>
-          <div>
-            <Modal/>
-            <div className="container">
-              <main>
-                <Routes>
-                  <Route exact path="/" element={<LoginForm/>}></Route>                
+        value={{
+          modal, setModal, hideModal, 
+          allVouchers, setAllVouchers, 
+          vouchers, setVouchers, 
+          pendingVouchers, setPendingVouchers, 
+          availableVouchers, setAvailableVouchers, 
+          filteredAvailableVouchers, setFilteredAvailableVouchers, filterAvailableVouchers,
+          filterVouchers, deleteVoucher
+          }}
+        >
 
-                  <Route exact path="/main" element={<HomePage/>}></Route>
+          <UserProvider>
 
-                  <Route exact path= "/vouchers/:id" element={<VoucherPage/>} className="menu-item"></Route>
+          <Router>
+            <div>
+              <Modal/>
+              <div className="container">
+                <main>
+                  <Routes>
+                    <Route exact path="/" element={<LoginForm/>}></Route>                
 
-                  <Route exact path="/approve/:id" element={<ApprovePage/>} className="menu-item"></Route>
+                    <Route exact path="/main" element={<HomePage/>}></Route>
 
-                  <Route exact path="/registration" element={<RegistrationPage/>}className="menu-item"></Route>
+                    <Route exact path= "/vouchers/:id" element={<VoucherPage/>} className="menu-item"></Route>
 
-                  <Route exact path="/login" element={<LoginPage/>}className="menu-item"></Route>
+                    <Route exact path="/approve/:id" element={<ApprovePage/>} className="menu-item"></Route>
 
-                  <Route  exact path="/vouchers" element={<ReportVouchersPage/>}className="menu-item"></Route >
+                    <Route exact path="/registration" element={<RegistrationPage/>}className="menu-item"></Route>
 
-                  <Route  exact path="/new-vouchers" element={<NewVouchersPage/>}className="menu-item"></Route >
+                    <Route exact path="/login" element={<LoginPage/>}className="menu-item"></Route>
 
-                  <Route  exact path="/users" element={<UserListPage/>}className="menu-item"></Route >
+                    <Route  exact path="/vouchers" element={<ReportVouchersPage/>}className="menu-item"></Route >
 
-                </Routes>
-              </main>
+                    <Route  exact path="/new-vouchers" element={<NewVouchersPage/>}className="menu-item"></Route >
+
+                    <Route  exact path="/users" element={<UserListPage/>}className="menu-item"></Route >
+
+                  </Routes>
+                </main>
+              </div>
             </div>
-          </div>
-        </Router>
+          </Router>
+        </UserProvider>
       </VoucherContext.Provider>
     </AuthProvider>
   );
-}
+};
 
 export default App;
