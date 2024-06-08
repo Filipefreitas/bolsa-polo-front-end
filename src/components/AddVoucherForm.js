@@ -6,98 +6,60 @@ const AddVoucherForm = () => {
 
     const {setModal} = useContext(VoucherContext);
 
-    const [errorPerc, setErrorPerc] = useState("");
-    const [errorQtd, setErrorQtd] = useState("");
     const [formData, setFormData] = useState({
-        percDiscount: undefined,
-        qtdVouchers: undefined,
+        percDiscount: "",
+        qtdVouchers: "",
         errorPerc: "",
         errorQtd: "",
     });
-    
-    const validateForm = (percDiscount, qtdVouchers)=>{
-    
-        let isValidated = false;
-        setErrorPerc("");
-        setErrorQtd("");
 
-        if(percDiscount === undefined)
-        {
-            setErrorPerc("Informe o valor do voucher a ser cadastrado (entre 1 e 100)");
-        }
-        else if(isNaN(percDiscount))
-        {
-            setErrorPerc("O percentual do voucher deve ser numérico entre 1 e 100");
-        }
-        else if(percDiscount < 0 || percDiscount > 100)
-        {
-            setErrorPerc("O percentual do voucher a ser cadastrado deve ser entre 1 e 100");
-        }
-
-        if(qtdVouchers === undefined)
-        {
-            setErrorQtd("Informe a quantidade de voucher a serem cadastrados (entre 1 e 10)");
-        }
-
-        if(isValidated)
-        {
-            isValidated = true;
-            setErrorPerc("");
-            setErrorQtd("");
-            alert("Vouchers cadastrados com sucesso");
-        }
-
-        return isValidated;
-    }
-
-    const onCreateVoucher = (event)=>{
+    async function onCreateVoucher(evt) {
        
-        event.preventDefault();
+        evt.preventDefault();
 
-        setFormData({
-            percDiscount: formData.percDiscount,
-            qtdVouchers: formData.qtdVouchers
-        }); 
-                
-        validateForm(formData.percDiscount, formData.qtdVouchers);
-        
-        if(validateForm)
-        {
-            for(let i=0; i < formData.qtdVouchers; i++){ 
-                fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/vouchers`, {
-                    method: 'POST',
-                    headers : {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(formData)              
+        const convertedFormData = {
+            ...formData,
+            percDiscount: Number(formData.percDiscount),
+            qtdVouchers: Number(formData.qtdVouchers)
+        };
+
+        try{
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' 
+                },
+                body: JSON.stringify(convertedFormData)
+            };
+
+            const response = await fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/vouchers`, requestOptions);
+
+            const data = await response.json();
+            
+            if (!response.ok) {
+                setFormData({
+                    percDiscount: formData.percDiscount,
+                    qtdVouchers: formData.qtdVouchers,
+                    errorPerc: data.errors["errorPerc"],
+                    errorQtd: data.errors["errorQtd"]
                 })
-                .then(json=>{
-                    setFormData({
-                        percDiscount: json.percDiscount,
-                        qtdVouchers: json.qtdVouchers
-                  }) 
-                })
-                .catch(err=>{
-                    console.log(`Error ${err}`)
-                })
-
-                if(i === formData.qtdVouchers - 1)
-                {
-                    setModal({
-                        msg: "Vouchers cadastrados com sucesso"
-                        , visible: true
-                    })
-
-                    setFormData({
-                        percDiscount: "",
-                        qtdVouchers: "",
-                        errorPerc: "",
-                        errorQtd: "",
-                    });
-
-                }
             }
-        }        
+            else {
+                setModal({
+                    msg: "Vouchers cadastrados com sucesso"
+                    , visible: true
+                })
+
+                setFormData({
+                    percDiscount: "",
+                    qtdVouchers: "",
+                    errorPerc: "",
+                    errorQtd: "",
+                });
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error.message);
+        }
     }
 
     return (
@@ -111,7 +73,7 @@ const AddVoucherForm = () => {
                             <input className="input-box-max" type="text" id="percDiscount" value={formData.percDiscount} onChange={(event)=>{
                                 setFormData({...formData, percDiscount : event.target.value});
                             }}/>
-                            <p htmlFor="errorMessage" className="errorMessage text-left-alligned">{errorPerc}</p>
+                            <p htmlFor="errorMessage" className="errorMessage text-left-alligned">{formData.errorPerc}</p>
                         </div>
 
                         <div>
@@ -120,7 +82,7 @@ const AddVoucherForm = () => {
                                 setFormData({...formData, qtdVouchers : event.target.value});
                             }}/>
                         </div>
-                        <p htmlFor="errorMessage" className="errorMessage text-left-alligned">{errorQtd}</p>
+                        <p htmlFor="errorMessage" className="errorMessage text-left-alligned">{formData.errorQtd}</p>
                     </div>
                     
                 
